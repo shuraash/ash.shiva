@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600&display=swap");
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+*, ::after, ::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  user-select: auto; }
+
+a, a:hover, a:visited {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer; }
+
+body {
+  min-height: calc(var(--vh, 1vh) * 100);
+  min-width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+  margin: 0;
+  padding: 0;
+  font-family: 'Changa';
+  color: black;
+  overflow-x: hidden;
+  opacity: 0.001;
+ /*
+  //
+  //
+  //img.bk{
+  //  position: fixed;
+  //  top: -100px;
+  //  left: 50%;
+  //  height: calc(100vh + 200px);
+  //  transform: translate(-45%, 0) skew(-10deg, -5deg);
+  //  z-index: -1;
+  //}
+
+  //funny-bg{
+  //  display: block;
+  //  position: fixed;
+  //  width: 100vw;
+  //  height: 100vh;
+  //  top: 0;
+  //  left: 0;
+  //  pointer-events: none;
+  //  z-index: -1;
+  //
+  //  img.alpes{
+  //      position: absolute;
+  //      height: calc(100% + 200px);
+  //      width: auto;
+  //      top: 50%;
+  //      left: 0;
+  //      transform: translateY(-50%) rotateX(30deg); // scale(1.25);
+  //
+  //      @media all and (orientation: portrait) {
+  //
+  //      }
+  //
+  //  }
+  //
+  //  img.me-outbox{
+  //    position: absolute;
+  //    height: 50%;
+  //    width: auto;
+  //    bottom: 15%;
+  //    left: 50%;
+  //    transform: translateX(-50%);
+  //  }
+  //
+  //  display: none;
+  //
+  //}
+*/ }
+  body.loaded {
+    opacity: 1;
+    transition: opacity 0.345s ease-in; }
+  body.sc-no-scroll {
+    overflow: hidden; }
+  body ol.menu {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-column-gap: 32px;
+    grid-row-gap: 0px;
+    grid-template-columns: repeat(2, calc(50% - 16px));
+    list-style: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: left;
+    margin: 0;
+    padding: 16px 0 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1; }
+    body ol.menu li {
+      position: relative;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba(89, 89, 93, 0.77), 1px -1px 1px rgba(89, 89, 93, 0.66), -1px 1px 1px rgba(89, 89, 93, 0.66), -1px -1px 1px rgba(89, 89, 93, 0.66), 1px 0px 1px rgba(89, 89, 93, 0.66), 0px 1px 1px rgba(89, 89, 93, 0.66), -1px 0px 1px rgba(89, 89, 93, 0.66), 0px -1px 1px rgba(89, 89, 93, 0.66);
+      cursor: pointer;
+      transition: all 0.444s ease-out;
+      height: 100%; }
+      body ol.menu li span {
+        display: inline-block;
+        /* border: 1px dotted #fff4f430; */ }
+      body ol.menu li:nth-child(odd) {
+        text-align: right; }
+      body ol.menu li:hover {
+        transform: scale(1.2);
+        transition: all 0.333s ease-in; }
+  body footer {
+    background: #97aead70;
+    color: #fff;
+    box-shadow: 0 0 11px 0px #00000087;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: auto;
+    text-align: center;
+    color: #fff; }
+  body h-scroller {
+    display: grid;
+    width: 100vw;
+    grid-template-columns: 100%;
+    z-index: 0; }
+    body h-scroller section {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to top, #1849ac 0%, #092c44 75%); }
+      body h-scroller section.start {
+        background: url(/media/me1.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat; }
+      body h-scroller section.common {
+        padding: 8px; }
+
+/*# sourceMappingURL=ash.css.map */
