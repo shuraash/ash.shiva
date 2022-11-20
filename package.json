@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "lax.js": "^2.0.3"
   }
 }

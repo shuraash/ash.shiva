@@ -14,11 +14,11 @@
 
     <link rel="stylesheet" href="ash.css">
 
-<!--    <script async src="ash.js" type="module"></script>-->
+    <script async src="app.js" type="module"></script>
 
 </head>
 
-<body>
+<body class="no-scroll">
 
 <!--<funny-bg>-->
 <!--   <img class="alpes" src="alpes_bk1.jpg">-->
@@ -33,20 +33,23 @@
 </ol>
 
 
-<h-scroller>
-    <section class="start"></section>
+<div class="wrapper">
+
+	<section class="start">
+		<div></div>
+	</section>
 
 
     <section class="common">
         common
     </section>
 
-    <section class="cyberskills">cyberskills</section>
+    <section data-scene="cyberskills">cyberskills</section>
 
-    <section class="timeline">timeline</section>
+    <section data-scene="timeline">timeline</section>
 
-    <section class="trance">trance</section>
-</h-scroller>
+    <section data-scene="trance">trance</section>
+</div>
 
 
 <footer>
