@@ -109,10 +109,10 @@ const
 			],
 
 			rotateX: [
-				["elCenterY - 100", "elOutY"],
+				["elOutY - elHeight", "elOutY"],
 				[0, 33],
 				{
-						easing: 'easeOutCubic'
+						// easing: 'easeOutCubic'
 				}
 			],
 

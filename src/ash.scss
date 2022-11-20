@@ -6,7 +6,8 @@ body{
 
 	min-height: calc(var(--vh, 1vh) * 100);
 	width: 100vw;
-	background: #000;
+	background: #eee;
+	background: linear-gradient(#548320 0%, #99aad0 75%);
 	margin: 0;
 	padding: 0;
 
@@ -116,6 +117,7 @@ body{
 		//  text-shadow: 2px 2px 0 #85752c, 2px -2px 0 #85752c, -2px 2px 0 #85752c, -2px -2px 0 #85752c, 2px 0px 0 #85752c, 0px 2px 0 #85752c, -2px 0px 0 #85752c, 0px -2px 0 #85752c;
 		//  text-shadow: 2px 2px 0 rgba(89, 89, 93, 0.66), 2px -2px 0 rgba(89, 89, 93, 0.66), -2px 2px 0 rgba(89, 89, 93, 0.66), -2px -2px 0 rgba(89, 89, 93, 0.66), 2px 0px 0 rgba(89, 89, 93, 0.66), 0px 2px 0 rgba(89, 89, 93, 0.66), -2px 0px 0 rgba(89, 89, 93, 0.66), 0px -2px 0 rgba(89, 89, 93, 0.66);
 
+
 		li{
 			position: relative;
 			width: 100%;
@@ -175,6 +177,15 @@ body{
 		box-shadow: 3px 3px 6px 2px #00000036;
 		grid-template-rows: repeat(4, 33px);
 		padding: 8px 0;
+
+
+		@media all and (min-width: 620px){
+
+			grid-template-columns: repeat(4, auto);
+			grid-template-rows: auto;
+
+		}
+
 	}
 
 	footer{
@@ -235,7 +246,7 @@ body{
 				height: 100vh;
 				position: relative;
 
-				align-items: start;
+				align-items: center;
 				align-content: stretch;
 				justify-items: center;
 
@@ -266,13 +277,17 @@ body{
 
 					overflow: hidden;
 					border: 2px ridge #8b45136b;
-					border-radius: 5%;
+					border-radius: 18px;
 
 					//margin-bottom: 50px;
 					//background-attachment: fixed;
 					/* mix-blend-mode: screen; */
 					/* opacity: 0.5; */
 					box-shadow: 3px 3px 6px 2px #00000036;
+
+					max-width: 444px;
+					max-height: 666px;
+					//max-height: 640px;
 				}
 
 				//img{

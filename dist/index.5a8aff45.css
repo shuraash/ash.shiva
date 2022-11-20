@@ -28,7 +28,7 @@ body {
   width: 100vw;
   color: #fff;
   opacity: .001;
-  background: #000;
+  background: linear-gradient(#548320 0%, #99aad0 75%);
   margin: 0;
   padding: 0;
   font-family: Changa;
@@ -92,6 +92,13 @@ body ol.menu li:hover {
   transform: scale(1.05);
 }
 
+@media (min-width: 620px) {
+  body ol.menu {
+    grid-template-rows: auto;
+    grid-template-columns: repeat(4, auto);
+  }
+}
+
 body footer {
   color: #fff;
   width: 100vw;
@@ -146,7 +153,7 @@ body .wrapper section.start {
   grid-template-rows: max-content auto;
   grid-template-columns: 100%;
   align-content: stretch;
-  place-items: start center;
+  place-items: center;
   padding-bottom: 10%;
   position: relative;
 }
@@ -154,9 +161,11 @@ body .wrapper section.start {
 body .wrapper section.start div.bk {
   height: 100%;
   width: 80%;
+  max-width: 444px;
+  max-height: 666px;
   background: url("me1.608e78c3.jpg") center / cover no-repeat;
   border: 2px ridge #8b45136b;
-  border-radius: 5%;
+  border-radius: 18px;
   overflow: hidden;
   box-shadow: 3px 3px 6px 2px #00000036;
 }
