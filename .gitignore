@@ -1,4 +1,6 @@
-.gitignore
+.git
+.idea
+.parcel-cache
 
 # Logs
 logs
