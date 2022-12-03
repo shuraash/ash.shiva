@@ -1,0 +1,30 @@
+@import './../_vars.scss';
+
+
+	section[data-key=skills]{
+
+	background: #254272;
+	line-height: 21px;
+	font-size: 14px;
+
+		p{
+			padding: 7px 0;
+		}
+
+		a{
+				position: relative;
+				display: inline-grid;
+				align-items: center;
+				grid-auto-flow: column;
+				grid-auto-columns: max-content;
+				grid-column-gap: 4px;
+				color: #ffffa6;
+				text-decoration: none;
+					img{
+					width: auto;
+					height: 19px;
+					}
+		}
+
+	}
+

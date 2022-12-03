@@ -1,0 +1,11 @@
+$vph: var(--vh, 1vh);
+$vphf: var(--vhf, 100vh);
+
+$wrap-max-width: 640px;
+
+
+@mixin min-vph{
+	min-height: $vphf;
+	width: 100%;
+	overflow-x: hidden
+}
