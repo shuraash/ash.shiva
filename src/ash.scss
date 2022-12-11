@@ -40,7 +40,6 @@ span{
 	&::-webkit-scrollbar{
 		display: none;
 	}
-
 	scrollbar-width: none;
 }
 
@@ -69,7 +68,7 @@ html, body{
 	//scroll-snap-type: y mandatory;
 	//scroll-snap-stop: always;
 	//scroll-snap-align: start;
-//max-height: calc(var(--vh, 1vh) * 100 + 1px);
+
 }
 
 
@@ -84,18 +83,37 @@ body{
 
 	@media all and (min-width: 620px){
 		//margin: 20px 0;
-		background: url(https://i.natgeofe.com/k/082b37d7-d83c-4033-886e-b081fa4fa0f2/moon_square.jpg) 0% 0% / cover;
+		background-position: center center;
+		background-size: cover;
+		background-image: url(https://s00.yaplakal.com/pics/pics_original/3/8/2/15062283.jpg);
+		background-image: url(https://lookw.ru/9/956/1566941889-2880h1620.cosmo-28.jpg);
+		background-image: url(https://wallpapercave.com/wp/wp8574135.jpg);
 	}
 
 }
 
-html{
-	//scroll-snap-type: y mandatory;
-	//
-	//&.no-scroll{
-	//	max-height: calc(var(--vh, 1vh) * 100 + 1px);
-	//}
+@media all and (orientation: landscape) and (max-height: 620px)
+{
+	#wrapper, #menu{
+		display: none !important;
+	}
+
+	#rotate_div{
+		display: grid !important;
+	}
 }
+
+#rotate_div{
+	@include min-vph;
+	position: fixed;
+	z-index: 99;
+	align-items: center;
+	justify-items: center;
+	font-size: 32px;
+	background: #000000d0;
+	display: none;
+}
+
 
 footer{
 	background: #97aead70;
@@ -114,6 +132,9 @@ footer{
 .hidden{
 	display: none;
 }
+
+
+
 
 
 sd-span{
@@ -146,6 +167,5 @@ sd-span-bdrop{
 	pointer-events: none;
 	z-index: 98;
 }
-
 
 @import '_index.scss';

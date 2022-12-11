@@ -47,6 +47,8 @@ const
 			if(cur) cur.classList.remove('current');
 			cur = menu.querySelector(`li[data-key="${key}"]`);
 			if(cur) cur.classList.add('current');
+
+			if(cur == 'whoiam' && 'onwheel' in window) bounceWheelShit();
 		}
 
 		// if(menu._current != key)
@@ -70,32 +72,19 @@ const
 		}));
 	},
 
-
 	bindScroll = () =>
 	{
-
 		bindMenu();
 
-		simpoScroller.options.onSimpoScrollStop = () => {
-
-			menuSetCurrent( activeSect().dataset.key );
-			// console.log(`menu up ${activeSect().dataset.key} asrclDelta: ${simpoScroller.state.scrollDelta}
-			//
-			//  scrollDeltaSav: ${simpoScroller.state.scrollDeltaSav}
-			//
-			// scrollY: ${simpoScroller.state.scrollY}
-			// srollYSav: ${simpoScroller.state.srollYSav}
-			//
-			// currentY: ${simpoScroller.currentY}
-			//
-			// `)
-			//setTimeout( () => menuSetCurrent( activeSect().dataset.key ), 777);
-
-		}
+		// wheel overscroll looking not good
+		document.querySelectorAll('section[data-key=skills] img').forEach(s =>
+		{
+			s.style.height = s.offsetHeight + 'px';
+			s.style.width = s.offsetWidth + 'px';
+		});
 
 		simpoScroller.options.scroller = wrapper;
-
-	//	simpoScroller.makeFixed( [wrapper.querySelector('[data-key=whoiam] div.bk')]);
+		simpoScroller.options.onSimpoScrollStop = () => menuSetCurrent( activeSect().dataset.key );
 
 		simpoScroller.addTarget(wrapper.querySelector('[data-key="whoiam"] div.bk'), {
 
@@ -128,30 +117,30 @@ const
 						qy = (curY / innerHeight) - Math.trunc(curY / innerHeight ),
 						qp = qy * 100,
 						px =  rangeVal(0,83,  innerWidth < 640 ? 100 : 140, 0, qp),
-						wmt =  rangeVal(0, 90,  (window.innerWidth > 620) ? 20 : 0, (window.innerWidth > 620) ? 126 : 90, qp);
+						wmt =  rangeVal(90, 100,  (innerWidth >= 640) ? 20 : 0, (innerWidth >= 640) ? 126 : 90, qp),
+						br =  rangeVal(80, 100,   0, (innerWidth >= 640) ? 16 : 0, qp);
 
-					// target.style.transform =  curY < window.innerHeight
-					// 	? `translateY( calc( var(--vh, 1vh) * ${pc} - ${px}% )` //- ${px}px)
-					// 	: '';
 
-					// if(window.innerWidth > 620)
-					// {
-						if(curY < innerHeight)
-							wrapper.style.marginTop = wmt + 'px';
-						else
-							wrapper.style.marginTop = '';
-					//}
+				//	target.classList.toggle('at-start', simpoScroller.options.scroller.scrollTop < window.innerHeight - 16);
+
+					if(curY < innerHeight)
+						wrapper.style.marginTop = wmt + 'px';
+					else
+						wrapper.style.marginTop = '';
 
 					target.style.transform =  curY < window.innerHeight
 						? `translateY( ${px}px )` //- ${px}px)
 						: '';
 
 
-					target.classList.toggle('at-start', document.scrollingElement.scrollTop < window.innerHeight);
+					target.style.borderRadius = curY <  window.innerHeight  // curY <  window.innerHeight * 0.8
+						? innerWidth >= 640 ? `${br}px` : ''
+						: innerWidth >= 640 ? '16px' : '';
 
-					target.querySelector('[data-key=whoiam]').classList.toggle('active', document.scrollingElement.scrollTop > window.innerHeight/2 )
 
-					console.log(`curY: ${curY}, px: ${px}, wmt: ${wmt}, targ.transf: ${target.style.transform}, wrpmt: ${wrapper.style.marginTop}`);
+				//	target.querySelector('[data-key=whoiam]').classList.toggle('active', document.scrollingElement.scrollTop > window.innerHeight/2 )
+
+				//	console.log(`curY: ${curY}, px: ${px}, wmt: ${wmt}, targ.transf: ${target.style.transform}, wrpmt: ${wrapper.style.marginTop}`);
 				}
 			});
 

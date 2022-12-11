@@ -52,13 +52,19 @@ const
 	trunc02 = (v) => Math.trunc(v * 100) / 100,
 
 
-	rangeVal = (start, end, from, to, val) => {
+	rangeVal = (start, end, from, to, val) =>
+	{
 		if (val <= start) return from;
+
 		if (val >= end) return to;
+
 		let q = (val - start) / (end - start);
 
 		return from + (to - from) * q;
 	}
+
+
+
 
 class SimpoScroller {
 
@@ -90,7 +96,7 @@ class SimpoScroller {
 	}
 
 	options = {
-		velocity: 0.5,
+		velocity: 0.66,
 		scroller: document.scrollingElement,
 		wrapper: document.querySelector('#wrapper')
 	}
@@ -214,83 +220,66 @@ class SimpoScroller {
 		}
 
 	//	this.attachXPnt();
+
+		addEventListener('resize', ev => this.animateTargets() );
+		addEventListener('orientationchange', ev => this.animateTargets() );
 	}
 
-	makeFixed(elements, toAbsolute = false)
-	{
-		// elm.classList.add('fa123fa321');
-		// const elements = [...document.querySelectorAll('.fa123fa321 > *')];
-		// elm.classList.remove('fa123fa321');
-
-		elements.map( e =>
-		{
-			const
-				{position, top, left, width, height} = e.style;
-				return {
-					el: e,
-					rect: e.getBoundingClientRect(),
-					saved: {
-						position: position,
-						top: top,
-						left: left,
-						width: width,
-						height: height
-					}
-				}
-		})
-		.forEach( e =>
-		{
-			const cs = getComputedStyle(e.el);
-			e.el.style.top = scrollY + e.rect.top + 'px'; //- parseFloat(cs.marginTop)
-			e.el.style.left = scrollX + e.rect.left + 'px';
-			e.el.style.height = e.rect.height + 'px';
-			e.el.style.width = e.rect.width + 'px';
-			e.el.style.position = 'fixed';
-
-
-			e.el.parentElement.addEventListener('resize', ev =>
-			{
-				e.el.style.top = scrollY + e.rect.top + 'px';
-				e.el.style.left = scrollX + e.rect.left + 'px';
-				e.el.style.height = e.rect.height + 'px';
-				e.el.style.width = e.rect.width + 'px';
-				e.style.position = 'fixed';
-
-				this.makeFixed([e.elm]);
-			});
-
-
-		});
-
-
-
-	}
-
-	attachXPnt()
-	{
-		document.addEventListener('pointerdown', ev =>
-		{
-			this.state.xDown = true;
-			this.state.pointerX = this.state.pointerXSav = this.state.curXSav = this.state.curX = this.state.startX = ev.x
-			console.log(ev)
-		});
-
-		document.addEventListener('pointermove', ev =>
-		{
-			if(this.state.xDown) this.state.pointerX = ev.x
-		});
-
-		document.addEventListener('pointerup', ev =>
-		{
-			this.state.xDown = false;
-		});
-	}
+	// makeFixed(elements, toAbsolute = false)
+	// {
+	// 	// elm.classList.add('fa123fa321');
+	// 	// const elements = [...document.querySelectorAll('.fa123fa321 > *')];
+	// 	// elm.classList.remove('fa123fa321');
+	//
+	// 	elements.map( e =>
+	// 	{
+	// 		const
+	// 			{position, top, left, width, height} = e.style;
+	// 			return {
+	// 				el: e,
+	// 				rect: e.getBoundingClientRect(),
+	// 				saved: {
+	// 					position: position,
+	// 					top: top,
+	// 					left: left,
+	// 					width: width,
+	// 					height: height
+	// 				}
+	// 			}
+	// 	})
+	// 	.forEach( e =>
+	// 	{
+	// 		const cs = getComputedStyle(e.el);
+	// 		e.el.style.top = scrollY + e.rect.top + 'px'; //- parseFloat(cs.marginTop)
+	// 		e.el.style.left = scrollX + e.rect.left + 'px';
+	// 		e.el.style.height = e.rect.height + 'px';
+	// 		e.el.style.width = e.rect.width + 'px';
+	// 		e.el.style.position = 'fixed';
+	//
+	//
+	// 		e.el.parentElement.addEventListener('resize', ev =>
+	// 		{
+	// 			e.el.style.top = scrollY + e.rect.top + 'px';
+	// 			e.el.style.left = scrollX + e.rect.left + 'px';
+	// 			e.el.style.height = e.rect.height + 'px';
+	// 			e.el.style.width = e.rect.width + 'px';
+	// 			e.style.position = 'fixed';
+	//
+	// 			this.makeFixed([e.elm]);
+	// 		});
+	//
+	//
+	// 	});
+	//
+	//
+	//
+	// }
 
 
-	setScroller(s)
-	{
-		this.options.scroller = s;
-	}
+	// setScroller(s)
+	// {
+	// 	this.options.scroller = s;
+	// }
 
 
 	viewPortFits(el)
@@ -489,7 +478,7 @@ class SimpoScroller {
 		if(this.options.onAnimtionFrame) this.options.onAnimtionFrame(this.currentY);
 
 
-		if(this.state.scrollDelta)
+		if(this.state.scrollDelta && !this.state.delayAnimtions)
 		{
 			this.animateTargets()
 
@@ -735,13 +724,13 @@ class SimpoScroller {
 		this.snapping = true;
 		this.snapStop = y;
 		this.snapDelta = y - this.state.realY;
-		//this.options.scroller.classList.add('no-scroll');
+		this.options.scroller.classList.add('no-scroll');
 		this.options.scroller.classList.add('scroll-delay');
 
 		setTimeout(() =>
 		{
 			//this.options.scroller.style.overflowY = savOY;
-		//	this.options.scroller.classList.remove('no-scroll');
+			this.options.scroller.classList.remove('no-scroll');
 			this.options.scroller.classList.remove('scroll-delay');
 			this.options.scroller.scrollTo(0, y);
 			this.options.wrapper.style = '';
@@ -768,7 +757,7 @@ class SimpoScroller {
 
 	snapTo( y, dur = 0.2 )
 	{
-		if(Math.abs(y - this.state.realY) < 1) return;
+		//if(Math.abs(y - this.state.realY) < 1) return;
 
 		// this.snapping = true;
 		// this.snapStop = y;

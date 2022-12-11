@@ -1,4 +1,3 @@
-
 <section data-key="skills">
 
 	<div>
@@ -13,21 +12,20 @@
 			I have strong experience in JavaScript, PHP, SQL, CSS and many more. Good in data modeling and data analysis.
 		</p>
 		<p>
-			Concerning frontend - JS/CSS/Node/JS building tools/etc - check this page source
+			<bbb>CONCERNING FRONTEND DEVELPMENT HUY</bbb> - JS/CSS/Node/JS building tools/etc - check this page source at
 			<a href="https://github.com/shuraash/ash.shiva" target="_blank">
-				at <img src="media/GitHub-logo-i.png" alt="GitHub"> GitHub.
+				GitHub <img src="media/GitHub-logo-i.png" alt="GitHub">.
 			</a>
 		</p>
 
 		<p>
-			About data analysis -  a good example is
+			<bbb>ABOUT DATA ANALYSIS</bbb> -  a good example is
 			<a href="https://appraisal.secretimmo.lu/" target="_blank">“Secretimmo appraisal tool”</a>.<br/>
-			Big data from different sources, a lots of parameters to analyse.
-			Totally built by me from scratch.
+			Big data from different sources, a lots of parameters to analyse. Built from scratch.
 		</p>
 
 		<p>
-			Backend example - 	API for “Secrtimmo App” - download for
+			<bbb>BACKEND EXAMPLE></bbb> - 	API for “Secrtimmo App” - download for
 			<a href="https://apps.apple.com/app/secretimmo/id1638904947" target="_blank"> IOS </a> or
 			<a href="https://apps.apple.com/app/secretimmo/id1638904947" target="_blank"> Android </a>.
 			<br/>
@@ -35,39 +33,95 @@
 			<a href="https://documenter.getpostman.com/view/21572449/UzQvsjmR" target="_blank">(API doc)</a>.<br/>
 		</p>
 
+		<p>
+			Unfortunately,  <a href="https://www.immotop.lu" target="_blank">IMMOTOP.LU</a> site, I'm work on last 12 years, has a good succsess, and was sold to corportion, and from April 2022 'web-face/fronted' is from this corporate. So no my work in it (just some database tasks).
+			Before (and I'm not alone) it was better.
+			But it only search & visualisation of AD's, backend still 60%-80% is my code (and clents area for management of their listings).
+		</p>
+
+		<p>
+			Also for this company, i make some tools:  FactX (Facturation eXtended)  and WMQ (Workers/Messages/Queues).
+		</p>
+
+		<p>
+			<bbb>FactX</bbb> is a complette company's work flow system: contracts, invoices, clients, shedules, products, a lots of reports, automated tasks, planing, businnes results for sales personal, etc.
+			Based on 'deferred projection' idea.
+			But, I can't show detailed screenshots, and will be need a lots of them, so just one (i found in a trash), for have an imagination:
+			<br>
+				<img class="wmq-sch" src="media/fx1.jpeg">
+			<br>
+		</p>
+
+		<p>
+			<bbb>WMQ</bbb> is a solution for exchanging listings data between providers, from hundreds sources in a diferrent formats.
+			Without punishing MySQL, and detailed logs.
+			<img class="wmq-sch" src="media/wmq1.jpeg">
+			<br>
+			<img class="wmq-sch" src="media/wmq2.jpeg">
+			<br>
+			<img class="wmq-sch" src="media/wmq3.jpeg">
+			<br>
+			<img class="wmq-sch" src="media/wmq4.jpeg">
+			<br>
+		</p>
+
+		<p>
+			Also, before in WMQ, was a system of 'alerts' : users can save their searches, and, if any new listing corresponds to the params of saved  search, user will have email or/and push notification about it.
+			Around 50k listings and 200k 'alerts' at an time slice, and my solution can notified user max 5 min after new correspond listing inserted in database (which happens every few minutes).
+		</p>
+
+		<p>
+			Both tools was iplemented on standart Web-Stack: MySQl/PHP/JS + REDIS. Without any 'popular' and abnormal huge framework, so result works very fast and stable.
+		</p>
+
+
 
 
 
 	</div>
 </section>
 
-
 <script type="text/scss">
 
 	section[data-key=skills]{
 
-	background: #254272;
-	line-height: 21px;
-	font-size: 14px;
+		background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+		line-height: 21px;
+		font-size: 14px;
 
-		p{
-			padding: 7px 0;
-		}
+		padding-bottom: 500px;
 
-		a{
-				position: relative;
-				display: inline-grid;
-				align-items: center;
-				grid-auto-flow: column;
-				grid-auto-columns: max-content;
-				grid-column-gap: 4px;
-				color: #ffffa6;
-				text-decoration: none;
-					img{
-					width: auto;
-					height: 19px;
-					}
-		}
+			bbb{
+				color: #7ec66b;
+				font-weight: 300;
+			}
+
+
+			p{
+				padding: 7px 0;
+			}
+
+			a{
+					position: relative;
+					display: inline-grid;
+					align-items: center;
+					grid-auto-flow: column;
+					grid-auto-columns: max-content;
+					grid-column-gap: 4px;
+					color: #ffffa6;
+					text-decoration: none;
+						img{
+						width: auto;
+						height: 19px;
+						}
+			}
+
+			img.wmq-sch{
+				width: 100%;
+				height: auto;
+				margin: 8px;
+			}
+
 
 	}
 

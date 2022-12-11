@@ -19,15 +19,18 @@
 		<span>Cyber Skills</span>
 	</li>
 	<li data-key="timeline"  data-text="E-Timeline"><span>E-Timeline</span><img class="runa-off"  src="media/runa_otal.png"><img class="runa-on"  src="media/runa_otal_on.png"></li>
-	<li data-key="trance" data-text="Twilight Form"><img class="runa-off"  src="media/runa_dagaz.png"><img class="runa-on"  src="media/runa_dagaz_on.png"><span>Twilight Form</span></li>
+	<li data-key="trance" data-text="Avatar"><img class="runa-off"  src="media/runa_dagaz.png"><img class="runa-on"  src="media/runa_dagaz_on.png"><span>Doppelganger</span></li>
 </ol>
 
 <script type="text/scss">
+
+
 	#menu{
 		display: grid;
 		grid-row-gap: 0px;
 		grid-column-gap: 32px;
-		grid-template-columns: repeat(2, calc(50% - 16px));
+	//	grid-template-columns: repeat(2, calc(50% - 16px));
+		grid-template-columns: calc(47% - 16px) calc(53% - 16px);
 		align-items: center;
 		justify-content: center;
 
@@ -42,8 +45,14 @@
 		top: 0;
 		left: 50%;
 		translate: -50% 0;
-		color: #a8a8a8;
+		color: #58715a;
 		z-index: 5;
+
+		background: linear-gradient(to right, #3E0661, #751838,  #3E0661);
+
+		//background: url(media/bk1.jpeg);
+		//background-size: cover;
+
 
 		//	background: linear-gradient(to bottom, #9c27b0, #b9bfcd);
 		//	background-color: #3f51b5;
@@ -51,25 +60,35 @@
 		//	background-image:  repeating-linear-gradient(to bottom, #59c173 40px, #a17fe0 40px, #5d26c1 80px);
 		//background-image:  linear-gradient(to bottom,  #0f0c29, #302b63, #24243e);
 
-		background-color: #e91e63;
+		//background-color: #e91e63;
 		//background-image: linear-gradient(to bottom,#5a122a 15%, #e91e63 50%, #5a122a 85%);
 		text-shadow: 4px 4px 8px #000000aa;
 		box-shadow: 0px 0px 8px 4px #00000066;
 		//padding: 8px 0;
 
 		//font-size: 1.25rem;
-		font-weight: 600;
-		letter-spacing: 2px;
-		font-size: 16px;
 
+		letter-spacing: 2px;
+		//font-size: 16px;
+
+
+		@media all and (max-width: 340px){
+			font-size: 13px;
+		}
 
 		@media all and (min-width: 620px){
 
 			//grid-template-columns: repeat(4, auto);
 			//grid-template-rows: auto;
 			//top: 40px;
-			margin-top: 20px;
+			margin-top: 16px;
+			font-size: 18px;
+
+			//&:not(.at-start){
+			//	border-radius: 16px;
+			//}
 		}
+
 
 		li{
 			position: relative;
@@ -85,6 +104,12 @@
 			grid-column-gap: 10px;
 			align-items: center;
 			justify-content: start;
+
+
+			img{
+				//filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.75));
+				opacity: 0.75;
+			}
 
 			&[data-key=whoiam], &[data-key=timeline]{
 				text-align: right;
@@ -111,10 +136,17 @@
 				padding-bottom: 16px;
 			}
 
+
+
 			&.current, &:hover{
 				//    text-shadow: 1px 1px 0 rgba(31, 34, 43, 0.44), 1px -1px 0 rgba(31, 34, 43, 0.44), -1px 1px 0 rgba(31, 34, 43, 0.44), -1px -1px 0 rgba(31, 34, 43, 0.44), 1px 0px 0 rgba(31, 34, 43, 0.44), 0px 1px 0 rgba(31, 34, 43, 0.44), -1px 0px 0 rgba(31, 34, 43, 0.44), 0px -1px 0 rgba(31, 34, 43, 0.44);
-				color: #fff;
+				color: #d3bacd;
 				transition: all 0.3s ease-in;
+
+				img{
+					//filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.75));
+					opacity: 1;
+				}
 			}
 
 			.runa-on{
@@ -122,8 +154,10 @@
 			}
 
 			&.current{
+				color: #fff;
 				transform: scale(1.03);
 				filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+				font-weight: 500;
 
 				.runa-off{
 					display: none;
@@ -131,6 +165,8 @@
 
 				.runa-on{
 					display: block;
+					filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.75));
+					scale: 1.15;
 				}
 			}
 
