@@ -1,4 +1,5 @@
 import {simpoScroller} from './simposcrol.js'
+import {isMobile} from './util.js';
 
 const
 	wrapper =  document.querySelector('#wrapper'),
@@ -76,32 +77,48 @@ const
 	{
 		bindMenu();
 
-		// wheel overscroll looking not good
-		document.querySelectorAll('section[data-key=skills] img').forEach(s =>
-		{
-			s.style.height = s.offsetHeight + 'px';
-			s.style.width = s.offsetWidth + 'px';
-		});
+		// simpoScroller.options.scroller = isMobile() && window.innerWidth < window.innerHeight
+		// 		? document.scrollingElement
+		// 		: wrapper;
 
-		simpoScroller.options.scroller = wrapper;
-		simpoScroller.options.onSimpoScrollStop = () => menuSetCurrent( activeSect().dataset.key );
+		simpoScroller.options.scroller  = wrapper;
 
-		simpoScroller.addTarget(wrapper.querySelector('[data-key="whoiam"] div.bk'), {
+		//simpoScroller.options.onSimpoScrollStop = () => menuSetCurrent( activeSect().dataset.key );
+		simpoScroller.options.onscroll = () => menuSetCurrent( activeSect().dataset.key );
+
+		const me = wrapper.querySelector('[data-key="whoiam"] div.bk');
+
+
+		simpoScroller.addTarget(me, {
 
 				update: (target, curY, ops) =>
 				{
 					const
+						meorg = me.offsetHeight / 1540,
+
 						qy = (curY / window.innerHeight) - Math.trunc(curY / window.innerHeight ),
 						qp = qy * 100,
-						bs =  rangeVal(0,86, 120, 0, qp),
-						bp =  rangeVal(0, 86,  60, 0, qp),
-						sfx = rangeVal(0,99, 1, 0.3, qp),
-						sfy = rangeVal(0,70, 1, 0.4, qp),
+
+						bs =  rangeVal(0,86, me.offsetHeight*.22, 0, qp),
+
+					//	bp =  rangeVal(0, 86,  60, 0, qp),
+
+						bp =  rangeVal(0, 86,  bs/2, 0, qp),
+
+						sfx = rangeVal(0,99, 1, 0.22, qp),
+
+						//sfy = rangeVal(0,70, 1, 0.4, qp),
+
 						ra =  rangeVal( 0, 90, 0, 40, qp);
 
-					 target.style.backgroundPosition = `center calc(50% + ${bp}px)`;
-					 target.style.backgroundSize = `auto calc(100% + ${bs}px)`;
+					target.style.transition = '';
+
+					target.style.backgroundSize = `auto calc(100% + ${bs}px)`;
+
+				     target.style.backgroundPosition = `center calc(50% + ${bp}px)`;
+
 					 target.style.scale = sfx; //`${sfx} ${sfy}`;
+
 					 target.style.transform = `rotateX(${ra}deg)`;
 
 				 	 //console.log(qy * 100, target.style.scale);
@@ -116,17 +133,26 @@ const
 					const
 						qy = (curY / innerHeight) - Math.trunc(curY / innerHeight ),
 						qp = qy * 100,
-						px =  rangeVal(0,83,  innerWidth < 640 ? 100 : 140, 0, qp),
-						wmt =  rangeVal(90, 100,  (innerWidth >= 640) ? 20 : 0, (innerWidth >= 640) ? 126 : 90, qp),
+						px =  rangeVal(0,83,  innerWidth < 640 ? 74 : 116, 0, qp),
+						//wmt =  rangeVal(90, 100,  (innerWidth >= 640) ? 20 : 0, (innerWidth >= 640) ? 126 : 90, qp),
+						wmt =  rangeVal(90, 100,   (innerWidth >= 640) ? -110 : -90, 0,  qp),
 						br =  rangeVal(80, 100,   0, (innerWidth >= 640) ? 16 : 0, qp);
 
 
 				//	target.classList.toggle('at-start', simpoScroller.options.scroller.scrollTop < window.innerHeight - 16);
 
+					// if(curY < innerHeight)
+					// 	wrapper.style.marginTop = wmt + 'px';
+					// else
+					// 	wrapper.style.marginTop = '';
+
 					if(curY < innerHeight)
-						wrapper.style.marginTop = wmt + 'px';
+						wrapper.style.translate = '0 ' + wmt + 'px';
 					else
-						wrapper.style.marginTop = '';
+						wrapper.style.translate = '';
+					//ranslate: 0 -110px;
+
+
 
 					target.style.transform =  curY < window.innerHeight
 						? `translateY( ${px}px )` //- ${px}px)

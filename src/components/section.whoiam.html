@@ -11,7 +11,7 @@
 	</figure>
 
 
-	<div class="bk" onclick="this.suko = !this.suko;  window.scrollTo(0, this.suko ? 0 : 1) "></div>
+	<div class="back"><div class="bk"></div></div>
 
 </section>
 
@@ -28,52 +28,133 @@
 		//height: calc(var(--vhf, 100vh) - 0px);
 
 		figure{
-			height: 184px;
+			//height: 184px;
+			height: auto;
 			align-self: start;
 			padding: 16px 8px 16px 20px;
 			color: #000;
-			margin-top: 90px;
+			margin-top: 96px;
 			p:not(:first-of-type)
 			{
 				margin-top: 3px;
 			}
 		}
 
-		div.bk{
+		div.back{
+			//touch-action: none;
+			//user-select: none;
 
 			position: absolute;
 			left: 50%;
 			bottom: 16px;
 			translate: -50%  0px;
-			height: calc(var(--vh, 1vh) * 100 - 100px - 184px - 90px - 16px);
+			height: calc(var(--vh, 1vh) * 100 - 75px - 184px - 90px - 16px);
 			width: 100%;
 			align-self: stretch;
 
-			background: url(media/me1.jpg);
-			background-position: center calc(50% + 60px);
-			background-size: auto calc(100% + 120px);
-			background-repeat: no-repeat;
+			//overflow: hidden;
+			//border: 2px ridge #8b45136b;
+			//border-radius: 18px;
 
-			transform-origin: center bottom;
-			transform-style: preserve-3d;
-
-			overflow: hidden;
-			border: 2px ridge #8b45136b;
-			border-radius: 18px;
-
-			box-shadow: 3px 3px 6px 2px #00000036;
+			//box-shadow: 3px 3px 6px 2px #00000036;
+			//border: 2px ridge #8b45136b;
+			//border-radius: 18px;
 
 			max-width: calc(100% - 32px);
+
+			perspective: 1540px;
+
+			.bk{
+
+				pointer-events: none;
+
+				background: url(media/me1.jpg);
+				background-position: center calc(50% + 60px);
+				background-size: auto calc(100% + 120px);
+				background-repeat: no-repeat;
+				transform-origin: center center;
+
+				width: 100%;
+				height: 100%;
+				//translate: 0 0 -20px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 1;
+
+				transform: translateZ(-10px);
+
+				box-shadow: 3px 3px 6px 2px #00000036;
+				border: 2px ridge #8b45136b;
+				border-radius: 18px;
+			}
+
+			//.top{
+			//	width: 100%;
+			//	height: 40px;
+			//	background: transparent;
+			//	transform: translateZ(-60px) rotateX(90deg);
+			//	position: absolute;
+			//	left: 0;
+			//	top: 0;
+			//	transform-origin: top left;
+			//}
+			//.bottom{
+			//	width: 100%;
+			//	height: 40px;
+			//	background: transparent;
+			//	transform: translateZ(60px) rotateX(90deg);
+			//	position: absolute;
+			//	left: 0;
+			//	bottom: 0;
+			//	transform-origin: bottom left;
+			//}
+			//
+			//.left{
+			//	width: 40px;
+			//	height: 100%;
+			//	background: transparent;
+			//	transform: rotateY(90deg);
+			//	position: absolute;
+			//	left: 0;
+			//	top: 0;
+			//	transform-origin: top left;
+			//}
+			//.right{
+			//	width: 40px;
+			//	height: 100%;
+			//	background: transparent;
+			//	transform: rotateY(-90deg);
+			//	position: absolute;
+			//	right: 0;
+			//	top: 0;
+			//	transform-origin: top right;
+			//}
+
+			//.back{
+			//	transform-origin: center center;
+			//	width: 100%;
+			//	height: 100%;
+			//	transform: translateZ(0px);
+			//	position: absolute;
+			//	left: 0;
+			//	top: 0;
+			//	//background: url(media/bk1.jpeg);
+			//	background: transparent;
+			//	//background-size: cover;
+			//	//border: 3px solid red;
+			//}
+
 		}
 
 		@media all and (min-width: 620px){
 
 			min-height: calc(var(--vhf, 100vh) - 40px);
 
-			div.bk{
-				height: calc(var(--vh, 1vh) * 100 - 100px - 184px - 90px - 16px - 90px);
-				max-width: 75%;
-				bottom: 32px;
+			div.back{
+				//height: calc(var(--vh, 1vh) * 100 - 100px - 184px - 90px - 16px - 90px);
+				//max-width: 75%;
+				//bottom: 32px;
 			}
 
 			figure{
