@@ -47,14 +47,13 @@ span{
 
 @import './_vars.scss';
 
-@import './_fignja.scss';
 
 
 .mobile-body{
   // height: calc(var(--vh, 1vh) * 100 + 1px);
 }
 
-//
+//sss
 html, body{
 	@include min-vph;
 	overflow: hidden;
@@ -65,10 +64,13 @@ html, body{
 	line-height: 20px;
 	//line-height: normal;
 	color: #eee;
+	font-weight: 300;
 	//scroll-snap-type: y mandatory;
 	//scroll-snap-stop: always;
 	//scroll-snap-align: start;
-
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	user-select: none;
 }
 
 

@@ -24,9 +24,9 @@ function runStartupItems()
 }
 
 
-document.readyState === 'complete'
+document.readyState === 'interactive'
 	? setTimeout(() => runStartupItems(), 10)
-	: document.addEventListener('readystatechange', (ev) => document.readyState === 'complete'
+	: document.addEventListener('readystatechange', (ev) => document.readyState === 'interactive'
 		? setTimeout(() => runStartupItems(), 10)
 		: null
 	);
@@ -36,4 +36,8 @@ window.addEventListener("beforeunload", (event) => window.scrollTo(0,0));
 
 
 export const isMobile = () => window.orientation != undefined && 'ontouchstart' in window;
+
+export const awaitTimer = (ms) => new Promise( (resolve, reject) => setTimeout( () => resolve(), ms) );
+
+
 

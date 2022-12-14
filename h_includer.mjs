@@ -6,8 +6,6 @@ const
 	reIncludeI = /(?<=<!--(.*)@include)(.*?)(?=-->)/gi,
 	reIncludeO =  /(?=<!--(.*)@include)(.*?)-->/gi,
 
-	reSCSSI = /(?<=<script(.*)text\/scss(.*)>)(.|\n)*?(?=<\/script>)/gi,
-	reSCSSO = /(?=<script(.*)text\/scss(.*)>)(.|\n)*?(<\/script>)/gi,
 
 	scss_include_there_tag = '/* include-there */';
 
@@ -32,7 +30,7 @@ async function includeFile(fn, ownerDir = '')
 {
 	if(ownerDir == '.') ownerDir = '';
 
-	//console.log(`including '${fn}'`);
+//	console.log(`including '${fn}'`);
 
 	let
 		baseFN = path.normalize( basePath + ownerDir + '/' + fn),
@@ -57,12 +55,29 @@ async function includeFile(fn, ownerDir = '')
 			if(!cmp.scss_inc_files) cmp.scss_inc_files = [];
 			cmp.scss_inc_files.push(icmp.scss_file);
 		}
+
+		if(icmp.js_file)
+		{
+			if(!cmp.js_inc_files) cmp.js_inc_files = [];
+			cmp.js_inc_files.push(icmp.js_file);
+		}
 	}
 
 
 	if(cmp.scss_inc_files)
 	{
-		let imps = '\n' + cmp.scss_inc_files.map(f => `@import '${f}';`).join('\n');
+
+		let imps = '\n' + cmp.scss_inc_files.map(f =>
+							{
+								let p = f.split('/'), pc = p.filter(s => s != '.');
+								if(pc.length > 1)
+								{
+									let bn = pc.pop();
+									return `@import '${pc.join('/') + '/scss/' + bn}';`;
+								}
+								else return `@import '${p.join('/')}';`
+							})
+							.join('\n');
 
 		if(cmp.scss)
 		{
@@ -80,9 +95,50 @@ async function includeFile(fn, ownerDir = '')
 	if(cmp.scss)
 	{
 		cmp.scss_file =  path.dirname(fn) + '/' +  (fn == input_file ? '' : '_')  + path.basename(fn).replace('.html', '.scss')
-		let rfn =  path.dirname(baseFN) + '/' + (fn == input_file ? '' : '_') + path.basename(baseFN).replace('.html', '.scss');
+		let rfn =  path.dirname(baseFN) + '/' + (fn == input_file ? '' : 'scss/_') + path.basename(baseFN).replace('.html', '.scss');
 		fs.writeFile(rfn, cmp.scss);
 	}
+
+	if(cmp.js_inc_files)
+	{
+		let imps = '\n' + cmp.js_inc_files.map(f =>
+		{
+			let p = f.split('/'), pc = p.filter(s => s != '.');
+			if(pc.length > 1)
+			{
+				let bn = pc.pop();
+				return `import './${pc.join('/') + '/js/' + bn}';`;
+			}
+			else return `import '${p.join('/')}';`
+		})
+		.join('\n');
+
+		// if(fn == 'components/wrapper.html')
+		// {
+		// 	console.log(cmp.js_inc_files, imps);
+		// 	process.exit();
+		// }
+
+		if(cmp.js)
+		{
+			if(cmp.js.indexOf(scss_include_there_tag) > -1)
+				cmp.js = cmp.js.replace(scss_include_there_tag, imps)
+			else
+				cmp.js += imps;
+		}
+		else
+		{
+			cmp.js = imps;
+		}
+	}
+
+	if(cmp.js)
+	{
+		cmp.js_file =  path.dirname(fn) + '/' +  (fn == input_file ? '' : '_')  + path.basename(fn).replace('.html', '.js')
+		let rfn =  path.dirname(baseFN) + '/' + (fn == input_file ? '' : 'js/_') + path.basename(baseFN).replace('.html', '.js');
+		fs.writeFile(rfn, cmp.js);
+	}
+
 
 	return cmp;
 }
@@ -92,7 +148,15 @@ async function includeFile(fn, ownerDir = '')
 function splitSource(str)
 {
 	const
-		ret = { html: str },
+		reSCSSI = /(?<=<script(.*)text\/scss(.*)>)(.|\n)*?(?=<\/script>)/gi,
+		reSCSSO = /(?=<script(.*)text\/scss(.*)>)(.|\n)*?(<\/script>)/gi,
+
+		reJSI = /(?![^>]+src)(?<=<script(.*)module(.*)>)(.|\n)*?(?=<\/script>)/gi,
+		reJSO = /(?![^>]+src)(?=<script(.*)module(.*)>)(.|\n)*?(<\/script>)/gi,
+
+		ret = { html: str };
+
+	let
 		matches = Array.from( str.matchAll(reSCSSO) ),
 		match = matches && matches.length ? matches[0] : false;
 
@@ -101,6 +165,17 @@ function splitSource(str)
 		ret.scss = match[0].match(reSCSSI)[0];
 		ret.html = str.slice(0, match.index) + str.slice(match.index + match[0].length);
 	}
+
+	str = ret.html;
+	matches = Array.from( str.matchAll(reJSO) );
+	match = matches && matches.length ? matches[0] : false;
+
+	if(match)
+	{
+		ret.js = match[0].match(reJSI)[0];
+		ret.html = str.slice(0, match.index) + str.slice(match.index + match[0].length);
+	}
+
 
 	return ret
 }

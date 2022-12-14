@@ -1,15 +1,9 @@
 <div id="wrapper" class="no-scroll-bar">
-
 	<!--@include section.whoiam.html-->
-
 	<!--@include section.skills.html-->
-
 	<!--@include section.timeline.html -->
-
 	<!--@include section.trance.html -->
-
 </div>
-
 
 <script type="text/scss">
 
@@ -34,16 +28,14 @@
 		margin: 90px 0 0px;
 
 
-		//touch-action: none;
-		-webkit-user-select: none;
-		-webkit-touch-callout: none;
-		user-select: none;
-
 		//scrollbar-width: none;
 		//&::-webkit-scrollbar {
 		//display: none; /* Safari and Chrome */
 		//}
 
+		.sect-end{
+			height: 66vh;
+		}
 
 
 		section{
@@ -79,9 +71,9 @@
 
 
 
-		@media all and (min-width: 620px){
+		@media all and (min-width: $wrap-max-width){
 
-			margin: 126px 0 20px;
+			margin: 120px 0 20px;
 			padding-bottom: 150px;
 
 			section{
@@ -90,6 +82,9 @@
 				box-shadow: 0px 3px 13px 3px #000000aa;
 
 				padding: 16px 24px;
+
+				//border: 2px solid #551f1f61;
+				border: 1px solid #000;
 
 				&:not(:first-of-type){
 					margin-top: 32px;

@@ -12,7 +12,7 @@
 			I have strong experience in JavaScript, PHP, SQL, CSS and many more. Good in data modeling and data analysis.
 		</p>
 		<p>
-			<bbb>CONCERNING FRONTEND DEVELPMENT HUY</bbb> - JS/CSS/Node/JS building tools/etc - check this page source at
+			<bbb>CONCERNING FRONTEND DEVELPMENT </bbb> - JS/CSS/Node/JS building tools/etc - check this page source at
 			<a href="https://github.com/shuraash/ash.shiva" target="_blank">
 				GitHub <img src="media/GitHub-logo-i.png" alt="GitHub">.
 			</a>
@@ -25,7 +25,7 @@
 		</p>
 
 		<p>
-			<bbb>BACKEND EXAMPLE></bbb> - 	API for “Secrtimmo App” - download for
+			<bbb>BACKEND EXAMPLE</bbb> - 	API for “Secrtimmo App” - download for
 			<a href="https://apps.apple.com/app/secretimmo/id1638904947" target="_blank"> IOS </a> or
 			<a href="https://apps.apple.com/app/secretimmo/id1638904947" target="_blank"> Android </a>.
 			<br/>
@@ -40,21 +40,25 @@
 		</p>
 
 		<p>
-			Also for this company, i make some tools:  FactX (Facturation eXtended)  and WMQ (Workers/Messages/Queues).
+			Also, for this company, i made some big tools:  <bba>FactX</bba> (Facturation eXtended) and <bba>WMQ</bba> (Workers/Messages/Queues).
 		</p>
 
 		<p>
-			<bbb>FactX</bbb> is a complette company's work flow system: contracts, invoices, clients, shedules, products, a lots of reports, automated tasks, planing, businnes results for sales personal, etc.
+			<bba>FactX</bba> is a complette company's work flow system: contracts, invoices, clients, shedules, products, a lots of reports, automated tasks, planing, businnes results for sales personal, etc.
 			Based on 'deferred projection' idea.
-			But, I can't show detailed screenshots, and will be need a lots of them, so just one (i found in a trash), for have an imagination:
+			I can't show detailed screenshots (anyway will be need a lots of them to describe all features, what is not fit to this page), so just one picture (i found it in a trash), for have an imagination:
 			<br>
 				<img class="wmq-sch" src="media/fx1.jpeg">
 			<br>
+			In the <bba>FactX</bba> also was used Redis based worker on the server (PHP),
+			'shared worker' for a browser, for centralize some tasks between open tabs, (JS of course).
+			But most in this project was DB/SQL related work. In conjunction with the main site database, the golbal records count was (and is) tens of millions.
 		</p>
 
 		<p>
-			<bbb>WMQ</bbb> is a solution for exchanging listings data between providers, from hundreds sources in a diferrent formats.
-			Without punishing MySQL, and detailed logs.
+			<bba>WMQ</bba> is a solution for exchanging listings data between providers, from hundreds sources in a diferrent formats.
+			Without punishing MySQL, and with detailed logs. Based on Redis for interprocess communication.
+
 			<img class="wmq-sch" src="media/wmq1.jpeg">
 			<br>
 			<img class="wmq-sch" src="media/wmq2.jpeg">
@@ -66,19 +70,57 @@
 		</p>
 
 		<p>
-			Also, before in WMQ, was a system of 'alerts' : users can save their searches, and, if any new listing corresponds to the params of saved  search, user will have email or/and push notification about it.
-			Around 50k listings and 200k 'alerts' at an time slice, and my solution can notified user max 5 min after new correspond listing inserted in database (which happens every few minutes).
+			Also, before, in <bba>WMQ</bba>, was a system of 'alerts' : users can save their searches, and, if any new listing corresponds to the params of saved  search, user will have email or/and push notification about it.
+			Around 50k listings and 200k 'alerts' at an time slice, and my solution can notify user max 5 min after new correspond listing inserted in database (which happens every few minutes).
 		</p>
 
 		<p>
-			Both tools was iplemented on standart Web-Stack: MySQl/PHP/JS + REDIS. Without any 'popular' and abnormal huge framework, so result works very fast and stable.
+			Both tools was iplemented on standart Web-Stack: MySQl/PHP/JS + REDIS. Without any 'popular' and abnormal huge framework, so result code works very fast and stable.
+		</p>
+
+		<p>
+			Plus, first versions of devices app's (IOS & Android) for IMMOTOP also was coded by me using <a href="https://trigger.io" target="_blank">TRIGGER.IO</a> (why now this site not works - no idea).
 		</p>
 
 
+		<br>
+		<br>
+		<p>
+			For Secretimmo I made also tool for 'virtual visits' (view and editing) + video chat (group) + "remote control"
+			(agent take control of moving through panorama views).<br>
+			With possibility to record a "visit" with voice guide + background music, and play after of course.
+			It done using <a href="https://pchen66.github.io/Panolens/" target="_blank">Panolens.js</a> for panoramas
+			and WEB-RTC + <a href="https://github.com/feross/simple-peer" target="_blank">simple-peer"</a>
+			<br>
+			If you wanna check, ask me for access token :) <a href="https://tour.secretimmo.lu/" target="_blank">tour.secretimmo.lu</a>
+			<br>
+			<img class="wmq-sch" src="media/vtour01.jpeg">
+			<br>
+			<img class="wmq-sch" src="media/vtour02.jpeg">
+			<br>
+			<img class="wmq-sch" src="media/vtour03.jpeg">
+		</p>
+
+		<br>
+		<br>
+		<p>
+			Other interested project i made in begining of 2000-th, was a "Trip". Solution for small logisticts campanies, which have few trucks.
+			Was helping to calculate truck trip expenses/incomes/fuel/driver's salary/etc. Mostly database works, but also with
+			data import from special controllers installed on the trucks with gps/gsm modules aka "sattelite controlled truck".
+		</p>
 
 
+		<br>
+		<br>
+		<p>
+			At the very start of my professional career, in ex-USSSR,
+			I’m writing software for automation and control of a equipment in huge military radio centres.
+			By some shedule, this app send commands (using kind of serial ports) to special controller for switch a parameters on radio transmitters/recivers.
+		</p>
 
 	</div>
+
+	<div class="sect-end"></div>
 </section>
 
 <script type="text/scss">
@@ -86,14 +128,20 @@
 	section[data-key=skills]{
 
 		background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-		line-height: 21px;
-		font-size: 14px;
+		//line-height: 21px;
+		//font-size: 14px;
 
-		padding-bottom: 500px;
+		padding-top: 50px;
+		//padding-bottom: 500px;
 
 			bbb{
 				color: #7ec66b;
-				font-weight: 300;
+				//font-weight: 300;
+			}
+
+			bba{
+				color: #ff9800;
+				//font-weight: 300;
 			}
 
 
@@ -119,7 +167,7 @@
 			img.wmq-sch{
 				width: calc(100% - 16px);
 				height: auto;
-				margin: 8px;
+				margin: 16px 0 8px;
 				border: 2px ridge #9e9e9e;
 				border-radius: 8px;
 			}

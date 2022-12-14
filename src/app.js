@@ -1,11 +1,16 @@
 import {isMobile, onStart} from './util.js';
 import {attachScroll} from './scroll.js';
 
+import './_index.js';
+
 onStart(() =>
 {
  	attachScroll();
 	document.body.classList.add('loaded');
 	window.scrollTo(0,0);
+
+	let vids = ["/video/imperia_striked_by_psy.mp4", "/video/love_is.mp4"];
+	document.querySelectorAll('video').forEach( (v,i) => v.innerHTML = `<source src="${vids[i]}" type="video/mp4">`);
 
 	let
 

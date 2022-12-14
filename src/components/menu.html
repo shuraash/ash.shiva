@@ -1,36 +1,40 @@
-<!--/*-->
-<!--runa JERA -> whoiam-->
-<!--runa KANO -> scills-->
-<!--runa OTAL -> timeline-->
-<!--runa Dagaz -> trance-->
-<!--*/-->
-
-
-<ol id="menu" >
-<!--	<div data-key="start" data-text="to Top"><span>⇡</span></div>-->
+<ol id="menu">
 	<li data-key="whoiam" class="current" data-text="Who I am">
 		<span>Who I am</span>
-		<img class="runa-off" src="media/runa_jera.png">
-		<img  class="runa-on" src="media/runa_jera_on.png">
+		<img src="media/runa_jera_on.png">
 	</li>
 	<li data-key="skills"  data-text="CyberSkills">
-		<img class="runa-off" src="media/runa_kano.png">
-		<img class="runa-on"  src="media/runa_kano_on.png">
+		<img src="media/runa_kano_on.png">
 		<span>Cyber Skills</span>
 	</li>
-	<li data-key="timeline"  data-text="E-Timeline"><span>E-Timeline</span><img class="runa-off"  src="media/runa_otal.png"><img class="runa-on"  src="media/runa_otal_on.png"></li>
-	<li data-key="trance" data-text="Avatar"><img class="runa-off"  src="media/runa_dagaz.png"><img class="runa-on"  src="media/runa_dagaz_on.png"><span>Doppelganger</span></li>
+	<li data-key="timeline"  data-text="E-Timeline">
+		<span>E-Timeline</span>
+		<img src="media/runa_otal_on.png">
+	</li>
+	<li data-key="trance" data-text="Avatar">
+		<img src="media/runa_dagaz_on.png">
+		<span>Incarnation</span>
+	</li>
 </ol>
 
-<script type="text/scss">
 
+<script type="module">
+
+// 	import {simpoScroller} from './../../simposcrol.js'
+// //	import {isMobile} from 'util.js';
+
+
+</script>
+
+
+
+<script type="text/scss">
 
 	#menu{
 		display: grid;
 		grid-row-gap: 0px;
-		grid-column-gap: 32px;
-	//	grid-template-columns: repeat(2, calc(50% - 16px));
-		grid-template-columns: calc(47% - 16px) calc(53% - 16px);
+		grid-column-gap: 24px;
+		grid-template-columns: calc(49% - 12px) calc(51% - 12px);
 		align-items: center;
 		justify-content: center;
 
@@ -45,48 +49,25 @@
 		top: 0;
 		left: 50%;
 		translate: -50% 0;
-		color: #58715a;
+		color: #fff;
 		z-index: 5;
+
+		font-weight: 300;
 
 		background: linear-gradient(to right, #3E0661, #751838,  #3E0661);
 
-		//background: url(media/bk1.jpeg);
-		//background-size: cover;
-
-
-		//	background: linear-gradient(to bottom, #9c27b0, #b9bfcd);
-		//	background-color: #3f51b5;
-		//// repeating-linear-gradient
-		//	background-image:  repeating-linear-gradient(to bottom, #59c173 40px, #a17fe0 40px, #5d26c1 80px);
-		//background-image:  linear-gradient(to bottom,  #0f0c29, #302b63, #24243e);
-
-		//background-color: #e91e63;
-		//background-image: linear-gradient(to bottom,#5a122a 15%, #e91e63 50%, #5a122a 85%);
-		text-shadow: 4px 4px 8px #000000aa;
-		box-shadow: 0px 0px 8px 4px #00000066;
-		//padding: 8px 0;
-
-		//font-size: 1.25rem;
-
-		letter-spacing: 2px;
-		//font-size: 16px;
-
+//		text-shadow: 4px 4px 8px #000000aa;
 
 		@media all and (max-width: 340px){
-			font-size: 13px;
+			font-size: 14px;
+			grid-column-gap: 16px;
 		}
 
-		@media all and (min-width: 620px){
-
-			//grid-template-columns: repeat(4, auto);
-			//grid-template-rows: auto;
-			//top: 40px;
+		@media all and (min-width: $wrap-max-width){
 			margin-top: 16px;
 			font-size: 18px;
-
-			//&:not(.at-start){
-			//	border-radius: 16px;
-			//}
+			//border: 2px solid #551f1f61;
+			border: 1px solid #000;
 		}
 
 
@@ -94,37 +75,31 @@
 			position: relative;
 			height: 100%;
 			width: 100%;
-
 			cursor: pointer;
-
-			transition: all 0.3s ease-out;
-
 			display: grid;
-			grid-template-columns: 25px auto;
-			grid-column-gap: 10px;
+			grid-template-columns: 24px auto;
+			grid-column-gap: 8px;
 			align-items: center;
 			justify-content: start;
 
+			transform-origin: 0% 50%;
 
-			img{
-				//filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.75));
-				opacity: 0.75;
-			}
+			transition: all 0.3s ease-in;
+
+			opacity: 0.5;
 
 			&[data-key=whoiam], &[data-key=timeline]{
 				text-align: right;
 				transform-origin: 100% 50%;
-				//padding-right: 16px;
 				padding-left: 0;
 				justify-content: end;
-				grid-template-columns: auto 25px;
+				grid-template-columns: auto 24px;
 			}
 
-			&[data-key=trance], &[data-key=skills]{
-				//padding-top: 16px;
-				//padding-bottom: 8px;
-				transform-origin: 0% 50%;
-			}
+			//&[data-key=trance], &[data-key=skills]{
+			//	transform-origin: 0% 50%;
+			//}
+
 
 			&[data-key=whoiam], &[data-key=skills]{
 				padding-top: 11px;
@@ -136,40 +111,33 @@
 				padding-bottom: 16px;
 			}
 
-
-
-			&.current, &:hover{
+			&:hover{
 				//    text-shadow: 1px 1px 0 rgba(31, 34, 43, 0.44), 1px -1px 0 rgba(31, 34, 43, 0.44), -1px 1px 0 rgba(31, 34, 43, 0.44), -1px -1px 0 rgba(31, 34, 43, 0.44), 1px 0px 0 rgba(31, 34, 43, 0.44), 0px 1px 0 rgba(31, 34, 43, 0.44), -1px 0px 0 rgba(31, 34, 43, 0.44), 0px -1px 0 rgba(31, 34, 43, 0.44);
-				color: #d3bacd;
+				//color: #d3bacd;
 				transition: all 0.3s ease-in;
-
-				img{
-					//filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.75));
-					opacity: 1;
-					transition: all 0.3s ease-in;
-				}
+				opacity: 0.7;
+				//img{
+				//	//filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.75));
+				//	opacity: 1;
+				//	transition: all 0.3s ease-in;
+				//}
 			}
 
-			.runa-on{
-				display: none;
-			}
+			//.runa-on{
+			//	display: none;
+			//}
 
 			&.current{
-				color: #fff;
 				transform: scale(1.03);
 				filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
-				font-weight: 500;
+				font-weight: 400;
+				opacity: 1;
 
-				.runa-off{
-					display: none;
-				}
-
-				.runa-on{
-					display: block;
-					filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.75));
-					scale: 1.15;
-					transition: all 0.3s ease-in;
-				}
+				//img{
+				//	filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.75));
+				//	scale: 1.15;
+				//	transition: all 0.3s ease-in;
+				//}
 			}
 
 			img{
