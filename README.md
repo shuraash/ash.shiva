@@ -1,4 +1,4 @@
-###This is a source of a page kind of combination of a <nbr>professional resume</nbr> and a <nbr>demo of some of the skills.
+### This is a source of a page kind of combination of a <nbr>professional resume</nbr> and a <nbr>demo of some of the skills.
 
 Suddenly my life is changed, and I need to leave for while Europhe without any computer, and can't finish this project as I'm planning.
 
