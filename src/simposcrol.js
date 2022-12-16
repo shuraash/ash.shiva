@@ -1,48 +1,10 @@
-// import './virtualscroll.js';
+/*
 
-const isMobile = () => window.orientation != undefined && 'ontouchstart' in window;
+Simple scroll animation helper
 
-class SimpoTarget {
+*/
 
-	options = {
-		velocity: 1,
-		virtualScroll: false
-	}
-
-	constructor(owner, el, ops)
-	{
-		this.el = el;
-		Object.assign(this.options, ops);
-		this.options.initialRect = el.getBoundingClientRect();
-		this.simpoScroller = owner;
-		// this.el.style.transition = 'all 0.05s ease-in-out';
-	}
-
-	update()
-	{
-		if(this.options.update)
-			this.options.update(this.el, this.simpoScroller.currentY, this);
-	}
-}
-
-const
-
-	trunc01 = (v) => Math.trunc(v * 10) / 10,
-	trunc02 = (v) => Math.trunc(v * 100) / 100,
-
-	rangeVal = (start, end, from, to, val) =>
-	{
-		if (val <= start) return from;
-
-		if (val >= end) return to;
-
-		let q = (val - start) / (end - start);
-
-		return from + (to - from) * q;
-	}
-
-
-
+import {isMobile, trunc01, trunc02, inViewPort, rangeVal} from './util.js';
 
 class SimpoScroller {
 
@@ -75,40 +37,14 @@ class SimpoScroller {
 
 	options = {
 		velocity: 0.66,
-		scroller: document.scrollingElement,
-		wrapper: document.querySelector('#wrapper')
+		scroller: document.scrollingElement
 	}
 
-	targets = []
+	targets = new Map();
 
 	constructor(ops)
 	{
 		Object.assign(this.options, ops);
-		//window.addEventListener('resize', ev => this.animateTargets() );
-	}
-
-	viewPortFits(el)
-	{
-		const
-			vh = window.innerHeight,
-			curY = this.currentY,
-			rect = (el.el ? el.el : el).getBoundingClientRect(), // el.el is SimpoTarget or SimpoSnap
-			top = rect.top > 0 && rect.top < vh ? rect.top/vh : 0,
-			bottom = rect.bottom > 0 && rect.bottom < vh ? rect.bottom/vh : 0,
-			middle = (rect.top + rect.height/2) > 0 && (rect.top + rect.height/2) < vh ? (rect.top + rect.height/2)/vh : 0,
-			cover = top > 0
-				? bottom > 0 ? bottom - top : 1 - top
-				: bottom > 0 ? Math.abs(bottom - 1) : 0;
-
-		el.viewPortFits = {
-			inView: cover > 0,
-			cover: cover,
-			top: top,
-			bottom: bottom,
-			middle: middle,
-		}
-
-		return el.viewPortFits;
 	}
 
 	get currentY()
@@ -156,7 +92,6 @@ class SimpoScroller {
 				this.scrollStart()
 		}
 
-
 		if(state.scrollDeltaSav != state.scrollDelta && Math.abs(state.scrollDelta) == 0)
 			if(this.options.onSimpoScrollStop) this.options.onSimpoScrollStop(this.currentY);
 
@@ -188,8 +123,8 @@ class SimpoScroller {
 		if(this.state.scrollDelta)
 		{
 			this.animateTargets()
-			if(this.options.onscroll)
-				this.options.onscroll(this.currentY);
+			if(this.options.onScroll)
+				this.options.onScroll(this.currentY);
 		}
 
 		this.saveState();
@@ -199,23 +134,54 @@ class SimpoScroller {
 
 	animateTargets()
 	{
-		const targets = this.targets.filter( t => this.viewPortFits(t).inView || getComputedStyle(t.el).position == 'fixed' || getComputedStyle(t.el).position == 'absolute');
-		for(const t of targets)
-		{
-			t.update();
-		}
+		const
+			curY = this.currentY,
+			vprc = trunc02(( (curY / innerHeight) - Math.trunc(curY / innerHeight ) ) * 100 );
+
+		[...this.targets.keys()]
+
+			.filter( t => ['fixed', 'absolute'].includes(getComputedStyle(t).position == 'fixed')
+						 || inViewPort(t.getBoundingClientRect(), 0, this.options.scroller.clientHeight)
+			)
+
+			.forEach( t => this.targets.get(t) (curY, vprc) );
 	}
 
-	addTarget(t, ops)
+	addTarget(t, hanlder)
 	{
-		if(!t)
+		if(!t || !t.parentNode)
 			throw new Error('Invalid target!');
 
-	    this.targets.push( new SimpoTarget(this, t, ops) );
+		if(!hanlder || typeof hanlder != 'function')
+			throw new Error('Invalid hanlder!');
+
+		this.targets.set(t, hanlder);
 	}
 
+	// viewPortFits(el)
+	// {
+	// 	const
+	// 		vh = window.innerHeight,
+	// 		curY = this.currentY,
+	// 		rect = (el.el ? el.el : el).getBoundingClientRect(), // el.el is SimpoTarget or SimpoSnap
+	// 		top = rect.top > 0 && rect.top < vh ? rect.top/vh : 0,
+	// 		bottom = rect.bottom > 0 && rect.bottom < vh ? rect.bottom/vh : 0,
+	// 		middle = (rect.top + rect.height/2) > 0 && (rect.top + rect.height/2) < vh ? (rect.top + rect.height/2)/vh : 0,
+	// 		cover = top > 0
+	// 			? bottom > 0 ? bottom - top : 1 - top
+	// 			: bottom > 0 ? Math.abs(bottom - 1) : 0;
+	//
+	// 	el.viewPortFits = {
+	// 		inView: cover > 0,
+	// 		cover: cover,
+	// 		top: top,
+	// 		bottom: bottom,
+	// 		middle: middle,
+	// 	}
+	//
+	// 	return el.viewPortFits;
+	// }
 }
-
 
 export const simpoScroller = new SimpoScroller();
 

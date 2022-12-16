@@ -1,43 +1,45 @@
+/* just some utilites */
 
-
-
-const startItems = [];
-
-
-export function onStart(fn)
-{
-	startItems.push(fn);
-}
-
-function runStartupItems()
-{
-	//let CSS_REAL_VH = window.innerHeight * 0.01; // FOR MOBILES, REMOVE BROWSER HEADER HEIGHT
-	// if('ontouchstart' in window)
-	// {
-	//	document.body.style.setProperty('--vh', `${CSS_REAL_VH}px`);
-//		alert(`--vh set to ${CSS_REAL_VH}px`);
-//}
-
-
-	for(const i of startItems)
-		i();
-}
-
+const startUpItems = [];
 
 document.readyState === 'interactive'
-	? setTimeout(() => runStartupItems(), 10)
+
+	? setTimeout(() =>  startUpItems.forEach( sif => sif() ), 10)
+
 	: document.addEventListener('readystatechange', (ev) => document.readyState === 'interactive'
-		? setTimeout(() => runStartupItems(), 10)
-		: null
-	);
+			? setTimeout(() =>  startUpItems.forEach( sif => sif() ), 10)
+			: null
+	  );
 
+export const
 
-window.addEventListener("beforeunload", (event) => window.scrollTo(0,0));
+	isMobile = () => window.orientation != undefined && 'ontouchstart' in window,
 
+	awaitTimer = (ms) => new Promise( (resolve, reject) => setTimeout( () => resolve(), ms) ),
 
-export const isMobile = () => window.orientation != undefined && 'ontouchstart' in window;
+	rangeVal = (start, end, from, to, val) =>
+	{
+		if(val <= start) return from;
+		if(val >= end) return to;
+		let q = (val - start) / (end - start);
 
-export const awaitTimer = (ms) => new Promise( (resolve, reject) => setTimeout( () => resolve(), ms) );
+		return from + (to - from) * q;
+	},
 
+	inViewPort = (rect, dy = 0, h = innerHeight) =>
+	{
+		let {top, bottom} = rect;
+		top += dy;
+		bottom += dy;
+		return  top < h && bottom > 0
+			?  ((bottom >= h ? h : bottom) - (top >= 0 ? top : 0)) / h
+			: false;
+	},
 
+	trunc01 = (v) => Math.trunc(v * 10) / 10,
 
+	trunc02 = (v) => Math.trunc(v * 100) / 100,
+
+	isPortrait = () => innerWidth < innerHeight,
+
+	onStart = fn => startUpItems.push(fn);

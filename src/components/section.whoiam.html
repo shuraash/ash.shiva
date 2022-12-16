@@ -11,9 +11,160 @@
 	</figure>
 
 
-	<div class="back"><div class="bk"></div></div>
+	<div class="back">
+			<div class="bk"></div>
+	</div>
 
 </section>
+
+
+<script type="module">
+
+	import {simpoScroller} from './../../simposcrol.js';
+	import {rangeVal} from './../../util.js';
+
+	const
+
+		wrapPoint = 640,
+
+		me = document.querySelector('section[data-key=whoiam] .back'),
+		figure = document.querySelector('section[data-key=whoiam] figure'),
+		mep = me.querySelector('.bk'),
+
+		upMyPicSizes = () =>
+		{
+			//wsect.offsetHeigh + wsec.offsetTop
+			// and me :)
+			let meb = me.parentElement.offsetHeight - (figure.offsetHeight + figure.offsetTop + 32);
+
+		//	console.log(`meb : ${meb} me.parentElement.offsetHeight : ${me.parentElement.offsetHeight} puk: ${(figure.offsetHeight + figure.offsetTop)}`);
+
+			let mxh = (me.parentElement.offsetWidth - 32) / 0.866;
+
+			if (mxh > 540) mxh = 540;
+
+			me.style.maxHeight = mxh + 'px';
+
+			me.style.height = meb + 'px';
+
+			let mhw = (me.offsetHeight * .866);
+			me.style.maxWidth = mhw + 'px';
+
+			// recalc again
+			meb = me.parentElement.offsetHeight - (figure.offsetHeight + figure.offsetTop + me.offsetHeight + 32);
+			me.style.bottom = meb > 16 ? meb + 'px' : '16px';
+		};
+
+	mep._rotateY = 0;
+
+
+	me.addEventListener('pointerdown', ev =>
+	{
+
+		if (ev.x < (innerWidth / 2 - 8) && mep._rotateY > -25)
+		{
+			mep._rotateY = -25;
+			//mep.style.transform = 'rotateX(0deg) rotateY(-12deg)'
+		}
+		else if (ev.x > (innerWidth / 2 + 8) && mep._rotateY < 25)
+		{
+			mep._rotateY = 12;
+			//mep.style.transform = 'rotateX(0deg) rotateY(12deg)'
+		}
+		else
+		{
+			mep._rotateY = 0;
+			//mep.style.transform = 'rotateX(0deg) rotateY(0deg)'
+		}
+
+		let meprec = mep.getBoundingClientRect();
+
+		if (ev.y < (meprec.top + meprec.height/2 - 8) && mep._rotateX > -25)
+		{
+			mep._rotateX = 25;
+			//mep.style.transform = 'rotateX(0deg) rotateX(-12deg)'
+		}
+		else if (ev.y > (meprec.top + meprec.height/2 + 8) && mep._rotateX < 25)
+		{
+			mep._rotateX = -25;
+			//mep.style.transform = 'rotateX(0deg) rotateX(12deg)'
+		}
+		else
+		{
+			mep._rotateX = 0;
+			//mep.style.transform = 'rotateX(0deg) rotateX(0deg)'
+		}
+
+		let t = `rotateX(${mep._rotateX}deg) rotateY(${mep._rotateY}deg)`;
+
+		if (mep.style.transform != t)
+		{
+			mep.style.transition = 'all 0.6s ease-in-out';
+			mep.style.transform = t;
+			//	setTimeout(() => mep.style.transition = '', 900);
+		}
+
+	})
+
+	me.addEventListener('pointerup', ev =>
+	{
+		if (mep.style.transform != '')
+		{
+			mep.style.transition = 'all 0.6s ease-in-out';
+			mep.style.transform = '';
+			//setTimeout(() => mep.style.transition = '', 900);
+		}
+	});
+
+	me.addEventListener('pointerout', ev =>
+	{
+		if (mep.style.transform != '')
+		{
+			mep.style.transition = 'all 0.9s ease-in-out';
+			mep.style.transform = '';
+			setTimeout(() => mep.style.transition = '', 900);
+		}
+	});
+
+	simpoScroller.addTarget(me, (curY, vprc) =>
+	{
+		const
+				//	meorg = me.offsetHeight / 1540,
+
+				bs =  rangeVal(0,86, me.offsetHeight*.22, 0, vprc),
+
+				//	bp =  rangeVal(0, 86,  60, 0, vprc),
+
+				bp =  rangeVal(0, 86,  bs/2, 0, vprc),
+
+				sfx = rangeVal(0,99, 1, 0.22, vprc),
+
+				//sfy = rangeVal(0,70, 1, 0.4, vprc),
+
+				ra =  rangeVal( 0, 90, 0, 40, vprc),
+
+				transition = '',
+
+				backgroundSize = `auto calc(100% + ${bs}px)`,
+
+				backgroundPosition = `center calc(50% + ${bp}px)`,
+
+				scale = sfx,
+
+				transform = `rotateX(${ra}deg)`;
+
+		Object.assign(me.style, {transition: transition, backgroundSize: backgroundSize, backgroundPosition: backgroundPosition, scale: scale, transform: transform });
+
+		//console.log(qy * 100, target.style.scale);
+	});
+
+
+	export const upMeSizes = upMyPicSizes;
+
+
+</script>
+
+
 
 <script type="text/scss">
 
@@ -26,6 +177,7 @@
 
 		min-height: var(--vhf, 100vh);
 		//height: calc(var(--vhf, 100vh) - 0px);
+		overflow: hidden;
 
 		figure{
 			//height: 184px;
@@ -51,14 +203,6 @@
 			height: calc(var(--vh, 1vh) * 100 - 75px - 184px - 90px - 16px);
 			width: 100%;
 			align-self: stretch;
-
-			//overflow: hidden;
-			//border: 2px ridge #8b45136b;
-			//border-radius: 18px;
-
-			//box-shadow: 3px 3px 6px 2px #00000036;
-			//border: 2px ridge #8b45136b;
-			//border-radius: 18px;
 
 			max-width: calc(100% - 32px);
 
@@ -88,63 +232,6 @@
 				border: 2px ridge #8b45136b;
 				border-radius: 18px;
 			}
-
-			//.top{
-			//	width: 100%;
-			//	height: 40px;
-			//	background: transparent;
-			//	transform: translateZ(-60px) rotateX(90deg);
-			//	position: absolute;
-			//	left: 0;
-			//	top: 0;
-			//	transform-origin: top left;
-			//}
-			//.bottom{
-			//	width: 100%;
-			//	height: 40px;
-			//	background: transparent;
-			//	transform: translateZ(60px) rotateX(90deg);
-			//	position: absolute;
-			//	left: 0;
-			//	bottom: 0;
-			//	transform-origin: bottom left;
-			//}
-			//
-			//.left{
-			//	width: 40px;
-			//	height: 100%;
-			//	background: transparent;
-			//	transform: rotateY(90deg);
-			//	position: absolute;
-			//	left: 0;
-			//	top: 0;
-			//	transform-origin: top left;
-			//}
-			//.right{
-			//	width: 40px;
-			//	height: 100%;
-			//	background: transparent;
-			//	transform: rotateY(-90deg);
-			//	position: absolute;
-			//	right: 0;
-			//	top: 0;
-			//	transform-origin: top right;
-			//}
-
-			//.back{
-			//	transform-origin: center center;
-			//	width: 100%;
-			//	height: 100%;
-			//	transform: translateZ(0px);
-			//	position: absolute;
-			//	left: 0;
-			//	top: 0;
-			//	//background: url(media/bk1.jpeg);
-			//	background: transparent;
-			//	//background-size: cover;
-			//	//border: 3px solid red;
-			//}
-
 		}
 
 		@media all and (min-width: $wrap-max-width){
@@ -162,7 +249,6 @@
 			}
 
 		}
-
-
 	}
+
 </script>

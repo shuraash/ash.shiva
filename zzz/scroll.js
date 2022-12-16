@@ -9,25 +9,25 @@ const
 menu._current = 'whoiam';
 
 const
-
-	rangeVal = (start, end, from, to, val) =>
-	{
-		if(val <= start) return from;
-		if(val >= end) return to;
-		let q = (val - start) / (end - start);
-
-		return from + (to - from) * q;
-	},
-
-	inViewPort = (rect, dy = 0, h = innerHeight) =>
-	{
-		let {top, bottom} = rect;
-		top += dy;
-		bottom += dy;
-		return  top < h && bottom > 0
-			? ((bottom >= h ? h : bottom) - (top >= 0 ? top : 0)) / h
-			: false;
-	},
+	//
+	// rangeVal = (start, end, from, to, val) =>
+	// {
+	// 	if(val <= start) return from;
+	// 	if(val >= end) return to;
+	// 	let q = (val - start) / (end - start);
+	//
+	// 	return from + (to - from) * q;
+	// },
+	//
+	// inViewPort = (rect, dy = 0, h = innerHeight) =>
+	// {
+	// 	let {top, bottom} = rect;
+	// 	top += dy;
+	// 	bottom += dy;
+	// 	return  top < h && bottom > 0
+	// 		? ((bottom >= h ? h : bottom) - (top >= 0 ? top : 0)) / h
+	// 		: false;
+	// },
 
 
 	// inViewPort2 = (rect, y = 0, h = innerHeight, ofs = 0) => rect.top < innerHeight && rect.bottom > 0
