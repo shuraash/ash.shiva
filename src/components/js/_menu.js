@@ -20,8 +20,6 @@
 
 			this.aniUpdate = this.aniUpdate.bind( this );
 			simpoScroller.addTarget( elMenu, this.aniUpdate );
-
-			simpoScroller.options.onscroll = () => this.current = sectos.active.dataset.key;
 		}
 
 		aniUpdate(curY, vprc)
@@ -37,6 +35,8 @@
 						: innerWidth >= wrapPoint ? '16px' : '';
 
 			Object.assign(elMenu.style, {transform: trans, borderRadius: bor});
+
+			this.current = sectos.active.dataset.key;
 		}
 
 

@@ -1,7 +1,7 @@
 
 
 	import {simpoScroller} from './../../simposcrol.js';
-	import {rangeVal} from './../../util.js';
+	import {rangeVal, inViewPort} from './../../util.js';
 
 	const
 			wrapPoint = 640,
@@ -34,6 +34,9 @@
 		else
 			wrapper.style.translate = '';
 	});
+
+
+	window.sectos = sectos;
 
 
 
