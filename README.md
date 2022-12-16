@@ -4,7 +4,7 @@ Suddenly my life is changed, and I need to leave for while Europhe without any c
 
 But it works.
 
-Was a goal this code works from /src in a browser without any building tools.
+Was a goal : this code works from /src in the browser without any building tools (but was needded add one very simple,  to split html/js/scc, it's h_includer.mjs).
 
 And, at other side, I'm wanna show skills with building tools.
 
