@@ -48,16 +48,9 @@ span{
 @import './_vars.scss';
 
 
-
-.mobile-body{
-  // height: calc(var(--vh, 1vh) * 100 + 1px);
-}
-
 //sss
 html, body{
 	@include min-vph;
-	overflow: hidden;
-	max-height: $vphf;
 	width: 100vw;
 	font-family: 'Changa';
 	font-size: 16px;
@@ -77,6 +70,8 @@ html, body{
 body{
 	background: linear-gradient(#548320 0%, #99aad0 75%);
 	opacity: 0.001;
+	overflow: hidden;
+	max-height: $vphf;
 
 	&.loaded{
 		opacity: 1;
@@ -88,6 +83,18 @@ body{
 		background-position: center center;
 		background-size: cover;
 		background-image: url(media/bk2.jpeg);
+	}
+
+	&.mobile-body{
+		// height: calc(var(--vh, 1vh) * 100 + 1px);
+		//max-height:  calc(100vh + 150px);
+		//height: calc(100vh + 10px);
+		max-height: unset;
+		height: auto;
+		overflow-y: auto;
+		sd-span{
+			display: block;
+		}
 	}
 
 }
@@ -138,7 +145,7 @@ footer{
 
 
 sd-span{
-	display: block;
+	display: none;
 	pointer-events: none;
 }
 

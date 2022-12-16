@@ -43,3 +43,7 @@ export const
 	isPortrait = () => innerWidth < innerHeight,
 
 	onStart = fn => startUpItems.push(fn);
+
+
+
+window.isPortrait = isPortrait;
