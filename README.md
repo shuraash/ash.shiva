@@ -1,6 +1,6 @@
 ### This is a source of a page kinda combination of a professional resume and a demo of some of the skills.
 
-Suddenly my life is changed, and I need to leave for while Europhe without any computer, and can't finish this project as I'm planning.
+Suddenly my life is changed, and I need to leave the Europhe for 3- months, without any computer, and can't finish this project as I'm planning.
 
 But it works.
 
