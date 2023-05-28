@@ -1,0 +1,100 @@
+
+	#menu{
+		display: grid;
+		grid-row-gap: 0px;
+		grid-column-gap: 24px;
+		grid-template-columns: calc(50% - 12px) calc(50% - 12px);
+		align-items: center;
+		justify-content: center;
+
+		text-transform: uppercase;
+		text-align: left;
+
+		position: fixed;
+		width: 100%;
+		height: 90px;
+		max-width: $wrap-max-width;
+		//top: 100px; // calc(40% - 150px) ;
+		top: 0;
+		left: 50%;
+		translate: -50% 0;
+		color: #fff;
+		z-index: 5;
+
+		font-weight: 300;
+
+		background: linear-gradient(to right, #3E0661, #751838,  #3E0661);
+
+//		text-shadow: 4px 4px 8px #000000aa;
+
+		@media all and (max-width: 340px){
+			font-size: 14px;
+			grid-column-gap: 16px;
+		}
+
+		@media all and (min-width: $wrap-max-width){
+			margin-top: 16px;
+			font-size: 18px;
+			//border: 2px solid #551f1f61;
+			//border: 1px solid #000;
+			border: 2px ridge #8b45136b;
+		}
+
+
+		li{
+			position: relative;
+			//height: 100%;
+			height: 45px;
+			width: 100%;
+			cursor: pointer;
+			display: grid;
+			grid-template-columns: 24px auto;
+			grid-column-gap: 8px;
+			align-items: center;
+			justify-content: start;
+
+			transform-origin: 0% 50%;
+
+			transition: all 0.3s ease-in;
+
+			opacity: 0.5;
+
+			&[data-key=whoiam], &[data-key=timeline]{
+				text-align: right;
+				transform-origin: 100% 50%;
+				padding-left: 0;
+				justify-content: end;
+				grid-template-columns: auto 24px;
+			}
+
+			&[data-key=whoiam], &[data-key=skills]{
+				//padding-top: 11px;
+				//padding-bottom: 8px;
+			}
+
+			&[data-key=trance], &[data-key=timeline]{
+				//padding-top: 8px;
+				//padding-bottom: 16px;
+			}
+
+			&:hover{
+				transition: all 0.3s ease-in;
+				opacity: 0.7;
+			}
+
+			&.current{
+				transform: scale(1.03);
+				filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+				font-weight: 400;
+				opacity: 1;
+				transition: all 0.3s ease-in;
+			}
+
+			img{
+				width: 25px;
+				height: auto;
+				object-fit: contain;
+			}
+		}
+	}
+

@@ -1,0 +1,87 @@
+
+
+	section[data-key=whoiam]{
+	//	background-color: #f00;
+		background-image: linear-gradient(to bottom, #163878 30%, #57bffa 66%,#09104e 100%) !important;
+		place-items: start center;
+		padding: 0 0 16px;
+		display: block;
+
+		min-height: var(--vhf, 100vh);
+		//height: calc(var(--vhf, 100vh) - 0px);
+		overflow: hidden;
+
+		figure{
+			//height: 184px;
+			height: auto;
+			align-self: start;
+			padding: 16px 8px 16px 20px;
+			color: #e4e4e4 !important;
+			margin-top: 96px;
+			p:not(:first-of-type)
+			{
+				margin-top: 3px;
+			}
+		}
+
+		div.back{
+			//touch-action: none;
+			//user-select: none;
+
+			position: absolute;
+			left: 50%;
+			bottom: 16px;
+			translate: -50%  0px;
+			height: calc(var(--vh, 1vh) * 100 - 75px - 184px - 90px - 16px);
+			width: 100%;
+			align-self: stretch;
+
+			max-width: calc(100% - 32px);
+
+			perspective: 1540px;
+
+			.bk{
+
+				pointer-events: none;
+
+				background: url(media/me1.jpg);
+				background-position: center calc(50% + 60px);
+				background-size: auto calc(100% + 120px);
+				background-repeat: no-repeat;
+				transform-origin: center center;
+
+				width: 100%;
+				height: 100%;
+				//translate: 0 0 -20px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 1;
+
+				transform: translateZ(-10px);
+
+				box-shadow: 3px 3px 6px 2px #00000036;
+				border: 2px ridge #8b45136b;
+				border-radius: 18px;
+			}
+		}
+
+		@media all and (min-width: $wrap-max-width){
+
+			min-height: calc(var(--vhf, 100vh) - 40px);
+
+			div.back{
+				//height: calc(var(--vh, 1vh) * 100 - 100px - 184px - 90px - 16px - 90px);
+				//max-width: 75%;
+				//bottom: 32px;
+			}
+
+			figure{
+					margin-top: 140px;
+			}
+
+		}
+	}
+
+
+@import './_section.whoiam.pa.scss';

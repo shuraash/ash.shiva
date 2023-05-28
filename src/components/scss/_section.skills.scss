@@ -1,0 +1,52 @@
+
+
+	section[data-key=skills]{
+
+		background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+		//line-height: 21px;
+		//font-size: 14px;
+
+		padding-top: 50px;
+		//padding-bottom: 500px;
+
+			bbb{
+				color: #7ec66b;
+				//font-weight: 300;
+			}
+
+			bba{
+				color: #ff9800;
+				//font-weight: 300;
+			}
+
+
+			p{
+				padding: 7px 0;
+			}
+
+			a{
+					position: relative;
+					display: inline-grid;
+					align-items: center;
+					grid-auto-flow: column;
+					grid-auto-columns: max-content;
+					grid-column-gap: 4px;
+					color: #ffffa6;
+					text-decoration: none;
+						img{
+							width: auto;
+							height: 19px;
+						}
+			}
+
+			img.wmq-sch{
+				width: calc(100% - 16px);
+				height: auto;
+				margin: 16px 0 8px;
+				border: 2px ridge #9e9e9e;
+				border-radius: 8px;
+			}
+
+
+	}
+

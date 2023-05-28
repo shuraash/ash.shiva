@@ -1,6 +1,6 @@
 <ol id="menu">
-	<li data-key="whoiam" class="current" data-text="Who I am">
-		<span>Who I am</span>
+	<li data-key="whoiam" class="current" data-text="About me">
+		<span>About me</span>
 		<img src="media/runa_jera_on.png">
 	</li>
 	<li data-key="skills"  data-text="CyberSkills">
@@ -88,7 +88,7 @@
 		display: grid;
 		grid-row-gap: 0px;
 		grid-column-gap: 24px;
-		grid-template-columns: calc(49% - 12px) calc(51% - 12px);
+		grid-template-columns: calc(50% - 12px) calc(50% - 12px);
 		align-items: center;
 		justify-content: center;
 
@@ -128,7 +128,8 @@
 
 		li{
 			position: relative;
-			height: 100%;
+			//height: 100%;
+			height: 45px;
 			width: 100%;
 			cursor: pointer;
 			display: grid;
@@ -152,13 +153,13 @@
 			}
 
 			&[data-key=whoiam], &[data-key=skills]{
-				padding-top: 11px;
-				padding-bottom: 8px;
+				//padding-top: 11px;
+				//padding-bottom: 8px;
 			}
 
 			&[data-key=trance], &[data-key=timeline]{
-				padding-top: 8px;
-				padding-bottom: 16px;
+				//padding-top: 8px;
+				//padding-bottom: 16px;
 			}
 
 			&:hover{
