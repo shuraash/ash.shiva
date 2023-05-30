@@ -6,6 +6,8 @@ Simple scroll animation helper
 
 import {isMobile, trunc01, trunc02, inViewPort, rangeVal} from './util.js';
 
+const scrollStart = new Event("scrollStart");
+
 class SimpoScroller {
 
 	state = {
@@ -104,7 +106,7 @@ class SimpoScroller {
 
 	scrollStart()
 	{
-
+		window.dispatchEvent(scrollStart);
 	}
 
 

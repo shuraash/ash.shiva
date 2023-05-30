@@ -8,8 +8,7 @@ document.readyState === 'interactive'
 
 	: document.addEventListener('readystatechange', (ev) => document.readyState === 'interactive'
 			? setTimeout(() =>  startUpItems.forEach( sif => sif() ), 10)
-			: null
-	  );
+			: null);
 
 export const
 
@@ -45,5 +44,38 @@ export const
 	onStart = fn => startUpItems.push(fn);
 
 
-
 window.isPortrait = isPortrait;
+
+
+window.addEventListener('pointerdown', ev => resetInactivityTimer());
+window.addEventListener('pointerup', ev => resetInactivityTimer());
+window.addEventListener('pointercancel', ev => resetInactivityTimer());
+window.addEventListener('pointermove', ev => resetInactivityTimer());
+window.addEventListener('keydown', ev => resetInactivityTimer());
+window.addEventListener('scrollStart', ev => resetInactivityTimer());
+
+let
+	inactivityTimer = 0;
+
+const
+	inactivityStart = new Event("inactivityStart"),
+	inactivityEnd = new Event("inactivityEnd");
+
+function resetInactivityTimer()
+{
+	if(inactivityTimer)
+	{
+		if(inactivityTimer != -1)
+			clearTimeout(inactivityTimer);
+		else
+			window.dispatchEvent(inactivityEnd);
+	}
+	inactivityTimer = setTimeout(()=>
+	{
+		inactivityTimer = -1;
+		window.dispatchEvent(inactivityStart);
+	}, 7777);
+}
+
+
+resetInactivityTimer();

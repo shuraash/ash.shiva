@@ -64,6 +64,21 @@
 				border: 2px ridge #8b45136b;
 				border-radius: 18px;
 			}
+
+
+			#finger{
+				width: 54px;
+				position: absolute;
+				left: -15px;
+				top: -18px;
+				z-index: 12;
+				transform: rotate(-45deg);
+				filter: drop-shadow(2px 4px 6px black);
+				display: none;
+				&.active{
+					display: block;
+				}
+			}
 		}
 
 		@media all and (min-width: $wrap-max-width){

@@ -1,153 +1,111 @@
 
 
+
 	import {simpoScroller} from './../../simposcrol.js';
 	import {rangeVal} from './../../util.js';
 
 	const
 
-		wrapPoint = 640,
+			wrapPoint = 640,
 
-		me = document.querySelector('section[data-key=whoiam] .back'),
-		figure = document.querySelector('section[data-key=whoiam] figure'),
-		mep = me.querySelector('.bk'),
+			me = document.querySelector('section[data-key=whoiam] .back'),
+			figure = document.querySelector('section[data-key=whoiam] figure'),
+			mep = me.querySelector('.bk'),
 
-		upMyPicSizes = () =>
-		{
-			//wsect.offsetHeigh + wsec.offsetTop
-			// and me :)
-			let meb = me.parentElement.offsetHeight - (figure.offsetHeight + figure.offsetTop + 32);
+			upMyPicSizes = () =>
+			{
+				//wsect.offsetHeigh + wsec.offsetTop
+				// and me :)
+				let meb = me.parentElement.offsetHeight - (figure.offsetHeight + figure.offsetTop + 32);
 
-		//	console.log(`meb : ${meb} me.parentElement.offsetHeight : ${me.parentElement.offsetHeight} puk: ${(figure.offsetHeight + figure.offsetTop)}`);
+				//	console.log(`meb : ${meb} me.parentElement.offsetHeight : ${me.parentElement.offsetHeight} puk: ${(figure.offsetHeight + figure.offsetTop)}`);
 
-			let mxh = (me.parentElement.offsetWidth - 32) / 0.866;
+				let mxh = (me.parentElement.offsetWidth - 32) / 0.866;
 
-			if (mxh > 540) mxh = 540;
+				if (mxh > 540) mxh = 540;
 
-			me.style.maxHeight = mxh + 'px';
+				me.style.maxHeight = mxh + 'px';
 
-			me.style.height = meb + 'px';
+				me.style.height = meb + 'px';
 
-			let mhw = (me.offsetHeight * .866);
-			me.style.maxWidth = mhw + 'px';
+				let mhw = (me.offsetHeight * .866);
+				me.style.maxWidth = mhw + 'px';
 
-			// recalc again
-			meb = me.parentElement.offsetHeight - (figure.offsetHeight + figure.offsetTop + me.offsetHeight + 32);
-			me.style.bottom = meb > 16 ? meb + 'px' : '16px';
-		},
-
-
-
-   mePDown = (x,y) => {
-
-     	if (x< (innerWidth / 2 - 8) && mep._rotateY > -25)
-		{
-			mep._rotateY = -25;
-			//mep.style.transform = 'rotateX(0deg) rotateY(-12deg)'
-		}
-		else if (x> (innerWidth / 2 + 8) && mep._rotateY < 25)
-		{
-			mep._rotateY = 12;
-			//mep.style.transform = 'rotateX(0deg) rotateY(12deg)'
-		}
-		else
-		{
-			mep._rotateY = 0;
-			//mep.style.transform = 'rotateX(0deg) rotateY(0deg)'
-		}
-
-		let meprec = mep.getBoundingClientRect();
-
-		if (y < (meprec.top + meprec.height/2 - 8) && mep._rotateX > -25)
-		{
-			mep._rotateX = 25;
-			//mep.style.transform = 'rotateX(0deg) rotateX(-12deg)'
-		}
-		else if (y > (meprec.top + meprec.height/2 + 8) && mep._rotateX < 25)
-		{
-			mep._rotateX = -25;
-			//mep.style.transform = 'rotateX(0deg) rotateX(12deg)'
-		}
-		else
-		{
-			mep._rotateX = 0;
-			//mep.style.transform = 'rotateX(0deg) rotateX(0deg)'
-		}
-
-		let t = `rotateX(${mep._rotateX}deg) rotateY(${mep._rotateY}deg)`;
-
-		if (mep.style.transform != t)
-		{
-			mep.style.transition = 'all 0.6s ease-in-out';
-			mep.style.transform = t;
-			//	setTimeout(() => mep.style.transition = '', 900);
-		}
-
-    },
+				// recalc again
+				meb = me.parentElement.offsetHeight - (figure.offsetHeight + figure.offsetTop + me.offsetHeight + 32);
+				me.style.bottom = meb > 16 ? meb + 'px' : '16px';
+			},
 
 
-    mePUp = (ts = false) => {
+			mePDown = (x,y) => {
 
-            if (mep.style.transform != '')
-            {
-                mep.style.transition = 'all 0.6s ease-in-out';
-                mep.style.transform = '';
-                if(ts) setTimeout(() => mep.style.transition = '', 900);
-            }
-    },
+				if (x < (innerWidth / 2 - 8) && mep._rotateY > -25)
+				{
+					mep._rotateY = -25;
+					//mep.style.transform = 'rotateX(0deg) rotateY(-12deg)'
+				}
+				else if (x > (innerWidth / 2 + 8) && mep._rotateY < 25)
+				{
+					mep._rotateY = 12;
+					//mep.style.transform = 'rotateX(0deg) rotateY(12deg)'
+				}
+				else
+				{
+					mep._rotateY = 0;
+					//mep.style.transform = 'rotateX(0deg) rotateY(0deg)'
+				}
 
-meRND = () => {
+				let meprec = mep.getBoundingClientRect();
 
-//    mePUp();
+				if (y < (meprec.top + meprec.height/2 - 8) && mep._rotateX > -25)
+				{
+					mep._rotateX = 25;
+					//mep.style.transform = 'rotateX(0deg) rotateX(-12deg)'
+				}
+				else if (y > (meprec.top + meprec.height/2 + 8) && mep._rotateX < 25)
+				{
+					mep._rotateX = -25;
+					//mep.style.transform = 'rotateX(0deg) rotateX(12deg)'
+				}
+				else
+				{
+					mep._rotateX = 0;
+					//mep.style.transform = 'rotateX(0deg) rotateX(0deg)'
+				}
 
-    const
-          rx = Math.random() *  mep.offsetWidth + mep.getBoundingClientRect().x,
-          ry =  Math.random() *  mep.offsetHeight + mep.getBoundingClientRect().y
+				let t = `rotateX(${mep._rotateX}deg) rotateY(${mep._rotateY}deg)`;
 
-        mePDown
-        (
-            Math.random() *  mep.offsetWidth + mep.getBoundingClientRect().x,
-            Math.random() *  mep.offsetHeight + mep.getBoundingClientRect().y
-        );
+				if (mep.style.transform != t)
+				{
+					mep.style.transition = 'all 0.6s ease-in-out';
+					mep.style.transform = t;
+					//	setTimeout(() => mep.style.transition = '', 900);
+				}
 
-  const ru = 500 + Math.random() * 1234;
-
-  setTimeout( () => { mePUp() }, ru);
-
-   const rr = ru + 500 + Math.random() * 2000;
+			},
 
 
-  setTimeout( () => { meRND() }, rr);
+			mePUp = (ts = false) => {
 
-    console.log(`random x:${rx} y:${ry}`);
-};
-
-
-//  setTimeout( () => meRND(), Math.random() * 2000 + 1000 );
-
+				if (mep.style.transform != '')
+				{
+					mep.style.transition = 'all 0.6s ease-in-out';
+					mep.style.transform = '';
+					//    if(ts) setTimeout(() => mep.style.transition = '', 900);
+				}
+			};
 
 
 	mep._rotateY = 0;
 
 	me.addEventListener('pointerdown', ev =>
 	{
-
-        mePDown(ev.x, ev.y);
+		mePDown(ev.x, ev.y);
 	})
 
 	me.addEventListener('pointerup', ev => mePUp())
 
-
-	me.addEventListener('pointerout', ev =>
-	{
-
-	    mePUp(1);
-	//	if (mep.style.transform != '')
-	//	{
-	//		mep.style.transition = 'all 0.9s ease-in-out';
-	//		mep.style.transform = '';
-	//		setTimeout(() => mep.style.transition = '', 900);
-	//	}
-	});
+	me.addEventListener('pointerout', ev =>  mePUp(1));
 
 	simpoScroller.addTarget(me, (curY, vprc) =>
 	{
@@ -184,5 +142,39 @@ meRND = () => {
 
 	export const upMeSizes = upMyPicSizes;
 
+	let
+			randomMovesTimer = 0,
+			randomMovesUpTimer = 0;
+
+	function randomMoves()
+	{
+
+		const
+				rx = Math.random() *  mep.offsetWidth + mep.getBoundingClientRect().x,
+				ry =  Math.random() *  mep.offsetHeight + mep.getBoundingClientRect().y,
+				rUp = 500 + Math.random() * 500,
+				rRnd = rUp + Math.random() * 3000;
+
+		mePDown(rx, ry);
+
+		randomMovesUpTimer = setTimeout( () => { mePUp() }, rUp);
+
+		randomMovesTimer = setTimeout( () => { randomMoves() }, rRnd);
+
+	};
+
+
+	window.addEventListener('inactivityStart', ev =>
+	{
+		document.querySelector('#finger').classList.add('active');
+	//	randomMoves();
+	});
+	window.addEventListener('inactivityEnd', ev =>
+	{
+		document.querySelector('#finger').classList.remove('active');
+		// clearTimeout(randomMovesUpTimer);
+		// clearTimeout(randomMovesTimer);
+		// mePUp();
+	});
 
 
