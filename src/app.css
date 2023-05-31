@@ -236,6 +236,8 @@ sd-span-bdrop {
       margin-top: 96px; }
       #wrapper section[data-key=whoiam] figure p:not(:first-of-type) {
         margin-top: 3px; }
+      #wrapper section[data-key=whoiam] figure a {
+        color: yellow; }
     #wrapper section[data-key=whoiam] div.back {
       position: absolute;
       left: 50%;
