@@ -41,6 +41,6 @@
 
 	spino();
 
-	let vids = ["/video/imperia_striked_by_psy.mp4", "/video/love_is.mp4"];
+	let vids = ["/video/imperia_striked_by_psy.mp4", "/video/love_is.mp4", "/video/zanzifun.mp4"];
 	document.querySelectorAll('video').forEach( (v,i) => v.innerHTML = `<source src="${vids[i]}" type="video/mp4">`);
 
